@@ -1,14 +1,16 @@
 <h1>Candidates#new</h1>
 <p>Find me in app/views/candidates/new.html.erb</p>
 
-
-<%= simple_form_for @candidate do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :email %>
-  <%= f.input :district %>
-  <%= f.input :profession %>
-  <%= f.submit 'Valider' %>
-<% end %>
-
+<div class="f-new">
+  <ul class="new-form">
+    <%= simple_form_for @candidate do |f| %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :email %>
+      <%= f.input :district %>
+      <%= f.input :profession %>
+      <%= f.submit 'Valider' %>
+    <% end %>
+  </ul>
+</div>
 
