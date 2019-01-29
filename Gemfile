@@ -18,6 +18,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'pry', '~> 0.10.3'
 gem 'pry-nav', '~> 0.2.4'
+gem 'rubyzip', require: 'zip'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

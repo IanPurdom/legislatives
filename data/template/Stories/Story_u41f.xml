@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="14.0">
+	<Story Self="u41f" UserText="true" IsEndnoteStory="false" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="$ID/" AppliedNamedGrid="n">
+		<StoryPreference OpticalMarginAlignment="false" OpticalMarginSize="12" FrameType="TextFrameType" StoryOrientation="Horizontal" StoryDirection="LeftToRightDirection" />
+		<InCopyExportOption IncludeGraphicProxies="true" IncludeAllResources="false" />
+		<ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/$ID/NormalParagraphStyle" HyphenationZone="44.1" RuleAboveLineWeight="1.225" RuleBelowLineWeight="1.225" SplitColumnInsideGutter="7.3500000000000005">
+			<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FillColor="Color/Paper" FontStyle="☞" PointSize="50" StrokeWeight="1.225" MiterLimit="4.9" RubyFontSize="-1.225" KentenFontSize="-1.225">
+				<Properties>
+					<Leading type="unit">34</Leading>
+					<AppliedFont type="string">Dense-Bold</AppliedFont>
+				</Properties>
+				<Content>Des élus</Content>
+				<Br />
+				<Content>qui vous ressemblent</Content>
+			</CharacterStyleRange>
+		</ParagraphStyleRange>
+	</Story>
+</idPkg:Story>

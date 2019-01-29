@@ -1,0 +1,14 @@
+stories:
+  - nom_prenom:
+    file: Story_u1ab.xml
+    file: Story_u3e6.xml
+  - profession:
+    file: Story_u1d3.xml
+    file: Story_u3fd.xml 
+  - prenom_suppléant:
+    file: Story_u43d.xml
+  - nom_suppleant:
+    file: Story_u456.xml
+  - mandat suppléant:
+    file: Story_u46f.xml
+

@@ -15,7 +15,6 @@ class CandidatesController < ApplicationController
   def create
     @candidate = Candidate.new(candidate_params)
     @candidate.user_id = current_user
-    @candidate.save
   end
 
   def edit
@@ -30,6 +29,7 @@ class CandidatesController < ApplicationController
   def poster
     poster = PosterService.new(@candidate)
     poster.create
+    render :show
   end
 
   private
