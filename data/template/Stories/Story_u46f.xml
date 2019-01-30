@@ -4,9 +4,9 @@
 		<StoryPreference OpticalMarginAlignment="false" OpticalMarginSize="12" FrameType="TextFrameType" StoryOrientation="Horizontal" StoryDirection="LeftToRightDirection" />
 		<InCopyExportOption IncludeGraphicProxies="true" IncludeAllResources="false" />
 		<ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/$ID/NormalParagraphStyle" HyphenationZone="55.439999999223964" RuleAboveLineWeight="1.5399999999784435" RuleBelowLineWeight="1.5399999999784435" SplitColumnInsideGutter="9.239999999870662">
-			<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FillColor="Color/C=0 M=0 J=100 N=0" FontStyle="Bold" PointSize="16" StrokeWeight="1.5399999999784435" Capitalization="AllCaps" MiterLimit="6.159999999913774" RubyFontSize="-1.5399999999784435" KentenFontSize="-1.5399999999784435">
+			<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FillColor="Color/C=0 M=0 J=100 N=0" PointSize="14" StrokeWeight="1.5399999999784435" Capitalization="AllCaps" MiterLimit="6.159999999913774" RubyFontSize="-1.5399999999784435" KentenFontSize="-1.5399999999784435">
 				<Properties>
-					<Leading type="unit">20</Leading>
+					<Leading type="unit">16</Leading>
 					<AppliedFont type="string">Montserrat</AppliedFont>
 				</Properties>
 				<Content>conseiller</Content>

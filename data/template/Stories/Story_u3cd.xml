@@ -4,7 +4,7 @@
 		<StoryPreference OpticalMarginAlignment="false" OpticalMarginSize="12" FrameType="TextFrameType" StoryOrientation="Horizontal" StoryDirection="LeftToRightDirection" />
 		<InCopyExportOption IncludeGraphicProxies="true" IncludeAllResources="false" />
 		<ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/$ID/NormalParagraphStyle" Justification="FullyJustified">
-			<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FillColor="Color/Paper" FontStyle="Extra Bold" PointSize="30" BaselineShift="2" Capitalization="AllCaps">
+			<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FillColor="Color/Paper" FontStyle="Extra Bold" PointSize="30" BaselineShift="3" Capitalization="AllCaps">
 				<Properties>
 					<Leading type="unit">38</Leading>
 					<AppliedFont type="string">Montserrat</AppliedFont>

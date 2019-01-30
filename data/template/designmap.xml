@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?aid style="50" type="document" readerVersion="6.0" featureSet="257" product="14.0(209)" ?>
-<Document xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="14.0" Self="d" StoryList="ue2 uff u14c u17b u193 u1ab u1d3 u23e u3cd u3e6 u3fd u41f u43d u456 u46f ua8" Name="A4_PROF_DE_FOI_LEGISLATIVES_2019.indd" ZeroPoint="0 0" ActiveLayer="ubf" CMYKProfile="$ID/" RGBProfile="$ID/" SolidColorIntent="UseColorSettings" AfterBlendingIntent="UseColorSettings" DefaultImageIntent="UseColorSettings" RGBPolicy="ColorPolicyOff" CMYKPolicy="ColorPolicyOff" AccurateLABSpots="false">
+<Document xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="14.0" Self="d" StoryList="ue2 uff u14c u1ab u1d3 u23e u3cd u3e6 u3fd u41f u43d u456 u46f u493 u4ab u4c4 u4dc u4fa u51c ua8" Name="A4_PROF_DE_FOI_LEGISLATIVES_2019.indd" ZeroPoint="0 0" ActiveLayer="ubf" CMYKProfile="$ID/" RGBProfile="$ID/" SolidColorIntent="UseColorSettings" AfterBlendingIntent="UseColorSettings" DefaultImageIntent="UseColorSettings" RGBPolicy="ColorPolicyOff" CMYKPolicy="ColorPolicyOff" AccurateLABSpots="false">
 	<Properties>
 		<Label>
 			<KeyValuePair Key="kAdobeDPS_Version" Value="2" />
@@ -133,6 +133,12 @@
 		<BuildingBlock Self="u9eBuildingBlock1" BlockType="PageNumberBuildingBlock" AppliedCharacterStyle="n" CustomText="$ID/" AppliedDelimiter="$ID/" IncludeDelimiter="false" />
 	</CrossReferenceFormat>
 	<idPkg:BackingStory src="XML/BackingStory.xml" />
+	<idPkg:Story src="Stories/Story_u51c.xml" />
+	<idPkg:Story src="Stories/Story_u4fa.xml" />
+	<idPkg:Story src="Stories/Story_u4dc.xml" />
+	<idPkg:Story src="Stories/Story_u4c4.xml" />
+	<idPkg:Story src="Stories/Story_u4ab.xml" />
+	<idPkg:Story src="Stories/Story_u493.xml" />
 	<idPkg:Story src="Stories/Story_u46f.xml" />
 	<idPkg:Story src="Stories/Story_u456.xml" />
 	<idPkg:Story src="Stories/Story_u43d.xml" />
@@ -143,24 +149,22 @@
 	<idPkg:Story src="Stories/Story_u23e.xml" />
 	<idPkg:Story src="Stories/Story_u1d3.xml" />
 	<idPkg:Story src="Stories/Story_u1ab.xml" />
-	<idPkg:Story src="Stories/Story_u193.xml" />
-	<idPkg:Story src="Stories/Story_u17b.xml" />
 	<idPkg:Story src="Stories/Story_u14c.xml" />
 	<idPkg:Story src="Stories/Story_uff.xml" />
 	<idPkg:Story src="Stories/Story_ue2.xml" />
 	<ColorGroup Self="ColorGroup/[Root Color Group]" Name="[Root Color Group]" IsRootColorGroup="true">
-		<ColorGroupSwatch Self="u491ColorGroupSwatch0" SwatchItemRef="Swatch/None" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatch1" SwatchItemRef="Color/Registration" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatch2" SwatchItemRef="Color/Paper" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatch3" SwatchItemRef="Color/Black" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatch4" SwatchItemRef="Color/C=100 M=0 J=0 N=0" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatch5" SwatchItemRef="Color/C=0 M=100 J=0 N=0" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatch6" SwatchItemRef="Color/C=0 M=0 J=100 N=0" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatch7" SwatchItemRef="Color/C=15 M=100 J=100 N=0" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatch8" SwatchItemRef="Color/C=75 M=5 J=100 N=0" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatch9" SwatchItemRef="Color/C=100 M=90 J=10 N=0" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatcha" SwatchItemRef="Color/c100m70y25k20" />
-		<ColorGroupSwatch Self="u491ColorGroupSwatchb" SwatchItemRef="Color/c0m100y80k20" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatch0" SwatchItemRef="Swatch/None" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatch1" SwatchItemRef="Color/Registration" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatch2" SwatchItemRef="Color/Paper" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatch3" SwatchItemRef="Color/Black" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatch4" SwatchItemRef="Color/C=100 M=0 J=0 N=0" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatch5" SwatchItemRef="Color/C=0 M=100 J=0 N=0" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatch6" SwatchItemRef="Color/C=0 M=0 J=100 N=0" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatch7" SwatchItemRef="Color/C=15 M=100 J=100 N=0" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatch8" SwatchItemRef="Color/C=75 M=5 J=100 N=0" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatch9" SwatchItemRef="Color/C=100 M=90 J=10 N=0" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatcha" SwatchItemRef="Color/c100m70y25k20" />
+		<ColorGroupSwatch Self="u535ColorGroupSwatchb" SwatchItemRef="Color/c0m100y80k20" />
 	</ColorGroup>
 	<IndexingSortOption Self="dIndexingSortOptionnkIndexGroup_Symbol" Name="$ID/kIndexGroup_Symbol" Include="true" Priority="0" HeaderType="Nothing" />
 	<IndexingSortOption Self="dIndexingSortOptionnkIndexGroup_Alphabet" Name="$ID/kIndexGroup_Alphabet" Include="true" Priority="1" HeaderType="BasicLatin" />
