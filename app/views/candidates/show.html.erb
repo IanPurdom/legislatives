@@ -1,8 +1,8 @@
-<h1><%= @candidate.first_name %></h1>
-<h1><%= @candidate.last_name %></h1>
+<h1><%= @candidate.user.first_name %></h1>
+<h1><%= @candidate.user.last_name %></h1>
 <h2><%= @candidate.district %></h2>
 <h3><%= @candidate.profession %></h3>
-<h3><%= @candidate.email %></h3>
+<h3><%= @candidate.user.email %></h3>
 
 <%= link_to 'créer kit de campagne', poster_candidate_path(@candidate) %>
 

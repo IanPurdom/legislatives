@@ -2,6 +2,6 @@
 
 <ul>
   <% @candidates.each do |candidate|%>
-  <div><%= candidate.first_name %> <%= candidate.last_name %></div>
+  <div><%= candidate.user.first_name %> <%= candidate.user.last_name %></div>
   <% end %>
 </ul>
