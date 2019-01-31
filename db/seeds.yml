@@ -1,0 +1,40 @@
+:statuses:
+  OPEN: 'En cours de création'  
+  PENDING_SD: 'En attente de validation SD'
+  PENDING_DNF: 'En attente de validation DNF'
+  PENDING_COM: 'En attente de validation Pôle Com.'
+  PENDING_CANDIDATE: 'En attende de validation finale du candidat'
+  CLOSE: 'Bon à tirer'
+:candidates:
+  :candidat_1:
+    first_name: 'Jean-Claude'
+    last_name: 'Duss'
+    email: 'jc@mail.com'
+    address: '10 boulevard National, Nanterre, 92000'
+    profession: 'Medecin'
+    mandate: 'Conseiller égional'
+:user:
+  :user_1:
+    first_name: 'Jean-Claude'
+    last_name: 'Duss'
+    email: 'jc@mail.com'
+    code: 'CAND'
+    description: 'Candidat'
+:user_2:
+    first_name: 'Thibaut'
+    last_name: 'Monnier'
+    email: 'thib@mail.com'
+    code: 'SD'
+    description: 'Secrétaire Départemental'
+:user_3:
+    first_name: 'Aleksander'
+    last_name: 'Nikolic'
+    email: 'Aleks@mail.com'
+    code: 'DNF'
+    description: 'Délégation Nationale aux fédérations'
+:user_4:
+    first_name: 'Charles'
+    last_name: 'Hourcade'
+    email: 'Charles@mail.com'
+    code: 'COM'
+    description: 'Pôle communication'

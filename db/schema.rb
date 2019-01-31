@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190130192139) do
+ActiveRecord::Schema.define(version: 20190131095857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,9 @@ ActiveRecord::Schema.define(version: 20190130192139) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "election_id"
+    t.bigint "status_id"
     t.index ["election_id"], name: "index_candidates_on_election_id"
+    t.index ["status_id"], name: "index_candidates_on_status_id"
     t.index ["user_id"], name: "index_candidates_on_user_id"
   end
 
@@ -48,6 +50,13 @@ ActiveRecord::Schema.define(version: 20190130192139) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "statuses", force: :cascade do |t|
+    t.string "code"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -61,6 +70,7 @@ ActiveRecord::Schema.define(version: 20190130192139) do
   end
 
   add_foreign_key "candidates", "elections"
+  add_foreign_key "candidates", "statuses"
   add_foreign_key "candidates", "users"
   add_foreign_key "deputies", "candidates"
 end

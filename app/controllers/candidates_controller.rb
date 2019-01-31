@@ -1,8 +1,8 @@
 class CandidatesController < ApplicationController
-  before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster] 
+  before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster]
 
   def index
-    @candidates = Candidates.all
+    @candidates = Candidate.all
   end
 
   def show
@@ -17,11 +17,15 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new(candidate_params)
     @candidate.user = current_user
     @candidate.election = Election.find_by(name:'Législatives')
-    @candidate.save
-    unless deputy_params[:first_name].empty?
-      deputy = Deputy.new(deputy_params)
-      deputy.candidate = @candidate
-      deputy.save
+    if @candidate.save
+      unless deputy_params[:last_name].empty?
+        deputy = Deputy.new(deputy_params)
+        deputy.candidate = @candidate
+        deputy.save
+      end
+      redirect_to candidate_path(@candidate)
+    else
+     render :new 
     end
   end
 

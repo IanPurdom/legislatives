@@ -1,2 +1,7 @@
-<h1>Candidates#index</h1>
-<p>Find me in app/views/candidates/index.html.erb</p>
+<h1>Candidats</h1>
+
+<ul>
+  <% @candidates.each do |candidate|%>
+  <div><%= candidate.first_name %> <%= candidate.last_name %></div>
+  <% end %>
+</ul>
