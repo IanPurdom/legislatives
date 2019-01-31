@@ -23,3 +23,8 @@ seeds['statuses'].each do |status|
   status.save
   puts "#{code} created"
 end
+
+puts 'user'
+  
+
+puts 'create candidates'
