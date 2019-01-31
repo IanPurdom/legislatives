@@ -20,19 +20,19 @@
     email: 'jc@mail.com'
     code: 'CAND'
     description: 'Candidat'
-:user_2:
+  :user_2:
     first_name: 'Thibaut'
     last_name: 'Monnier'
     email: 'thib@mail.com'
     code: 'SD'
     description: 'Secrétaire Départemental'
-:user_3:
+  :user_3:
     first_name: 'Aleksander'
     last_name: 'Nikolic'
     email: 'Aleks@mail.com'
     code: 'DNF'
     description: 'Délégation Nationale aux fédérations'
-:user_4:
+  :user_4:
     first_name: 'Charles'
     last_name: 'Hourcade'
     email: 'Charles@mail.com'
