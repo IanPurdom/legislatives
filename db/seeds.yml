@@ -7,34 +7,82 @@
   CLOSE: 'Bon à tirer'
 :candidates:
   :candidat_1:
-    first_name: 'Jean-Claude'
-    last_name: 'Duss'
-    email: 'jc@mail.com'
+    user: 'Duss'
     address: '10 boulevard National, Nanterre, 92000'
     profession: 'Medecin'
-    mandate: 'Conseiller égional'
-:user:
+    mandate: 'Conseiller régional'
+    district: 4ier circonscription des Essonnes
+    status: 'OPEN'
+    election: 'Législatives'
+  :candidat_2:
+    user: 'Duchemin'
+    address: '10 boulevard National, Nanterre, 92000'
+    profession: 'Consultant'
+    mandate: 'Conseiller Departemental'
+    district: 4ier circonscription du Vaucluse'
+    status: 'OPEN'
+    election: 'Législatives'
+:users:
   :user_1:
     first_name: 'Jean-Claude'
     last_name: 'Duss'
     email: 'jc@mail.com'
-    code: 'CAND'
-    description: 'Candidat'
+    role: 'CAN'
+    password: '123456'
+    password_confirmation: '123456'
   :user_2:
     first_name: 'Thibaut'
     last_name: 'Monnier'
     email: 'thib@mail.com'
-    code: 'SD'
-    description: 'Secrétaire Départemental'
+    role: 'SD'
+    password: '123456'
+    password_confirmation: '123456'
   :user_3:
     first_name: 'Aleksander'
     last_name: 'Nikolic'
     email: 'Aleks@mail.com'
-    code: 'DNF'
-    description: 'Délégation Nationale aux fédérations'
+    role: 'DNF'
+    password: '123456'
+    password_confirmation: '123456'
   :user_4:
     first_name: 'Charles'
     last_name: 'Hourcade'
     email: 'Charles@mail.com'
-    code: 'COM'
+    role: 'COM'
+    password: '123456'
+    password_confirmation: '123456'
+  :user_4:
+    first_name: 'Claude'
+    last_name: 'Duchemin'
+    email: 'claude@mail.com'
+    role: 'COM'
+    password: '123456'
+    password_confirmation: '123456'
+:roles:
+  :role_1:  
+    code: 'CAN'
+    description: 'Candidat'
+  :role_2:
+    code: 'SD'
+    description: 'Secrétaire Départemental'
+  :role_3:
+    code: 'DNF'
+    description: 'Délégation Nationale aux fédérations'
+  :role_4:
+    code: 'COM'  
     description: 'Pôle communication'
+:deputies:
+  :deputy_1:
+    candidate: 'Duss'
+    first_name: "Jacqueline"
+    last_name: 'Mantoux'
+    profession: 'Infirmière'
+    email: 'Jac@mail.com'
+    address: '2 rue pernety, Nanterre, 92000'
+  :deputy_2:
+    candidate: 'Duchemin'
+    first_name: "Arnaud"
+    last_name: 'Martin'
+    profession: 'Chauffeur'
+    email: 'am@mail.com'
+    address: '2 rue pernety, Nanterre, 92000'

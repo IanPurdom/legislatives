@@ -3,7 +3,5 @@ class Candidate < ApplicationRecord
   belongs_to :election
   has_one :deputy, dependent: :destroy
   accepts_nested_attributes_for :deputy
-  validates :first_name, presence: true
-  validates :last_name, presence: true
   validates :district, presence: true
 end
