@@ -60,6 +60,7 @@ end
 puts 'create candidates...'
 
 seeds[:candidates].each do |number, value|
+  puts value
   user = User.find_by(last_name: value['user'])
   status = Status.find_by(code: value['status'])
   election = Election.find_by(name: 'Législatives')
@@ -67,22 +68,23 @@ seeds[:candidates].each do |number, value|
   district = value['district']
   profession = value['profession']
   mandate = value['mandate']
+  secretary = User.find_by(last_name: value['secretary'])
   Candidate.create!(user_id: user.id, status_id: status.id, election_id: election.id, 
                     address: address, district: district, profession: profession, 
-                    mandate: mandate)
+                    mandate: mandate, secretary_id: secretary.id)
   puts "Candidate #{user.first_name} #{user.last_name} created"
 end
 
 puts 'create deputies...'
 
 seeds[:deputies].each do |number, value|
-  candidate = Candidate.find(User.find_by(last_name: value['candidate']).candidates.ids)
+  candidate = Candidate.find(User.find_by(last_name: value['candidate']).candidate.id)
   first_name = value['first_name']
   last_name = value['last_name']
   profession = value['profession']
   email = value['email']
   address = value['address']
-  deputy = Deputy.create!(candidate_id: candidate.first.id, first_name: first_name, last_name: last_name, profession: profession, email: email, address: address )
+  deputy = Deputy.create!(candidate_id: candidate.id, first_name: first_name, last_name: last_name, profession: profession, email: email, address: address )
   puts "Deputy #{deputy.first_name} #{deputy.last_name} created"
 end
 

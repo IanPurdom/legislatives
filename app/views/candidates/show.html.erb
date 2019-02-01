@@ -1,8 +1,12 @@
-<h1><%= @candidate.user.first_name %></h1>
-<h1><%= @candidate.user.last_name %></h1>
-<h2><%= @candidate.district %></h2>
-<h3><%= @candidate.profession %></h3>
-<h3><%= @candidate.user.email %></h3>
+<div><strong>Election <%= @candidate.election.name %> du <%= @candidate.election.election_date %></strong></div>
+<div><strong><%= @candidate.district %></strong></div>
+<div><%= @candidate.user.first_name %> <%= @candidate.user.last_name %></div>
+<div><%= @candidate.profession %></div>
+<div><%= @candidate.user.email %></div>
+<div><%= @candidate.mandate %></div>
+<div><strong>Suppléant:</strong></div>
+<div><%= @candidate.deputy.first_name %> <%= @candidate.deputy.last_name %></div>
+<div><%= @candidate.deputy.profession %></div>
 
 <%= link_to 'créer kit de campagne', poster_candidate_path(@candidate) %>
 
