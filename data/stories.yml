@@ -1,0 +1,19 @@
+first_name:
+  - Story_u51c.xml
+  - Story_u493.xml
+last_name: 
+  - Story_u1ab.xml 
+  - Story_u3e6.xml
+profession: 
+  - Story_u1d3.xml 
+  - Story_u3fd.xml 
+first_name_dep: 
+   - Story_u4fa.xml
+last_name_dep: 
+   - Story_u456.xml
+#  mandate: 
+#   - Story_u46f.xml
+#  election_date:
+#   - Story_u4c4.xml
+#  circo
+#   - Story_u4dc.xml

@@ -1,0 +1,160 @@
+:statuses:
+  :status_1:
+    code: OPEN
+    description: 'En cours de création'
+    next_action: 'Soumettre au SD'  
+  :status_2:
+    code: PENDING_SD
+    description: 'En attente de validation SD'
+    next_action: 'Soumettre à DNF'  
+  :status_3:
+    code: PENDING_DNF
+    description: 'En attente de validation DNF'
+    next_action: 'Soumettre pôle COM'
+  :status_4:
+    code: PENDING_COM
+    description: 'En attente de validation Pôle Com.'
+    next_action: 'Soumettre au candidat'
+  :status_5:
+    code: PENDING_CANDIDATE
+    description: 'En attende de validation finale du candidat'
+    next_action: 'Bon à tirer'
+  :status_6:
+    code: CLOSE
+    description: 'Candidature close'
+:candidates:
+  :candidat_1:
+    user: 'Duss'
+    address: '10 boulevard National, Nanterre, 92000'
+    profession: 'Medecin'
+    mandate: 'Conseiller régional'
+    district: 4ier circonscription des Essonnes
+    status: 'OPEN'
+    election: 'Législatives'
+    secretary: 'Monnier'
+  :candidat_2:
+    user: 'Duchemin'
+    address: '10 boulevard National, Nanterre, 92000'
+    profession: 'Consultant'
+    mandate: 'Conseiller Departemental'
+    district: 4ier circonscription du Vaucluse'
+    status: 'OPEN'
+    election: 'Législatives'
+    secretary: 'Monnier'
+  :candidat_3:
+    user: 'Michoux'
+    address: '10 boulevard National, Nanterre, 92000'
+    profession: 'Commerçante'
+    mandate: 'Conseiller régional'
+    district: 4ier circonscription des Yvellines
+    status: 'OPEN'
+    election: 'Législatives'
+    secretary: 'Diaz'
+  :candidat_4:
+    user: 'Marton'
+    address: '10 boulevard National, Nanterre, 92000'
+    profession: 'Informaticien'
+    mandate: 'Conseiller Departemental'
+    district: 4ier circonscription du Var'
+    status: 'OPEN'
+    election: 'Législatives'
+    secretary: 'Diaz'
+:users:
+  :user_1:
+    first_name: 'Jean-Claude'
+    last_name: 'Duss'
+    email: 'jc@mail.com'
+    role: 'CAN'
+    password: '123456'
+    password_confirmation: '123456'
+  :user_6:
+    first_name: 'Claude'
+    last_name: 'Duchemin'
+    email: 'claude@mail.com'
+    role: 'CAN'
+    password: '123456'
+    password_confirmation: '123456'
+  :user_7:
+    first_name: 'Caroline'
+    last_name: 'Michoux'
+    email: 'Mich@mail.com'
+    role: 'CAN'
+    password: '123456'
+    password_confirmation: '123456'
+  :user_8:
+    first_name: 'François'
+    last_name: 'Marton'
+    email: 'marton@mail.com'
+    role: 'CAN'
+    password: '123456'
+    password_confirmation: '123456'
+  :user_2:
+    first_name: 'Thibaut'
+    last_name: 'Monnier'
+    email: 'thib@mail.com'
+    role: 'SD'
+    password: '123456'
+    password_confirmation: '123456'
+  :user_3:
+    first_name: 'Edwige'
+    last_name: 'Diaz'
+    email: 'diaz@mail.com'
+    role: 'SD'
+    password: '123456'
+    password_confirmation: '123456'
+  :user_4:
+    first_name: 'Aleksander'
+    last_name: 'Nikolic'
+    email: 'Aleks@mail.com'
+    role: 'DNF'
+    password: '123456'
+    password_confirmation: '123456'
+  :user_5:
+    first_name: 'Charles'
+    last_name: 'Hourcade'
+    email: 'Charles@mail.com'
+    role: 'COM'
+    password: '123456'
+    password_confirmation: '123456'
+:roles:
+  :role_1:  
+    code: 'CAN'
+    description: 'Candidat'
+  :role_2:
+    code: 'SD'
+    description: 'Secrétaire Départemental'
+  :role_3:
+    code: 'DNF'
+    description: 'Délégation Nationale aux fédérations'
+  :role_4:
+    code: 'COM'  
+    description: 'Pôle communication'
+:deputies:
+  :deputy_1:
+    candidate: 'Duss'
+    first_name: "Jacqueline"
+    last_name: 'Mantoux'
+    profession: 'Infirmière'
+    email: 'Jac@mail.com'
+    address: '2 rue pernety, Nanterre, 92000'
+  :deputy_2:
+    candidate: 'Duchemin'
+    first_name: "Arnaud"
+    last_name: 'Martin'
+    profession: 'Chauffeur'
+    email: 'am@mail.com'
+    address: '2 rue pernety, Nanterre, 92000'
+  :deputy_3:
+    candidate: 'Michoux'
+    first_name: 'Julien'
+    last_name: 'Mantoux'
+    profession: 'Infirmière'
+    email: 'Jac@mail.com'
+    address: '2 rue pernety, Nanterre, 92000'
+  :deputy_4:
+    candidate: 'Marton'
+    first_name: "Franck"
+    last_name: 'Dubosc'
+    profession: 'Acteur'
+    email: 'am@mail.com'
+    address: '2 rue pernety, Nanterre, 92000'

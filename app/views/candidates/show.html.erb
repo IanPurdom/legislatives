@@ -1,0 +1,42 @@
+<div><strong><%= @candidate.status.code %></strong></div>
+<div><strong>Election <%= @candidate.election.name %> du <%= @candidate.election.election_date %></strong></div>
+<div><strong><%= @candidate.district %></strong></div>
+<div><%= @candidate.user.first_name %> <%= @candidate.user.last_name %></div>
+<div><%= @candidate.profession %></div>
+<div><%= @candidate.user.email %></div>
+<div><%= @candidate.mandate %></div>
+<div><strong>Suppléant:</strong></div>
+<% unless @candidate.deputy.nil? %>
+  <div><%= @candidate.deputy.first_name %> <%= @candidate.deputy.last_name %></div>
+  <div><%= @candidate.deputy.profession %></div>
+<% end %>
+
+<% if @candidate.status.code == 'OPEN' %>
+  <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
+  <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+<% elsif @candidate.status.code == 'PENDING_SD' && (current_user.role.code == 'DNF' || current_user.role.code == 'SD' || current_user.role.code == 'COM')%>  
+  <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
+  <%= link_to "Renvoyer candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+  <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+<% elsif @candidate.status.code == 'PENDING_DNF' && (current_user.role.code == 'DNF' || current_user.role.code == 'COM') %>
+  <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
+  <%= link_to "Renvoyer candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+  <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+<% elsif @candidate.status.code == 'PENDING_COM' && current_user.role.code == 'COM' %>
+  <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
+  <%= link_to "Renvoyer candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+  <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+<% elsif @candidate.status.code == 'PENDING_CANDIDATE' && current_user == @candidate.user %> 
+  <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
+  <%= link_to "Renvoyer candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+<% end %>
+<%# if @candidate.status ==  %>
+  <%#= link_to 'créer kit de campagne', poster_candidate_path(@candidate) %>
+<%# end %>
+<br>
+<br>
+<br>
+<div><strong>Audit:</strong></div>
+<% @candidate.audits.each do |audit| %>
+  <div>Date de validation: <%= audit.validation_date %> Status: <%= audit.status.code %> <%= audit.status.next_action %>utilisateur: <%= audit.user.first_name%> <%= audit.user.last_name%> departement: <%= audit.user.role.code %></div>
+<% end  %>
