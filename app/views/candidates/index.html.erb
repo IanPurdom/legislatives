@@ -1,7 +1,9 @@
 <h1>Candidats</h1>
 
-<ul>
-  <% @candidates.each do |candidate|%>
-  <div><%= candidate.user.first_name %> <%= candidate.user.last_name %></div>
+<% @statuses_ids.each do |status_id| %>
+  <div><%= Status.find(status_id).description %></div>
+  <% @candidates.where(status_id: status_id).each do |candidate| %>  
+    <div><%= link_to "#{candidate.user.first_name} #{candidate.user.last_name}", candidate_path(candidate)%></div>
   <% end %>
-</ul>
+<% end %>
+

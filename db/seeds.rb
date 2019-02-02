@@ -8,6 +8,7 @@
 
 puts 'Cleaning...'
 
+Audit.destroy_all
 Deputy.destroy_all
 Candidate.destroy_all
 Status.destroy_all
@@ -26,12 +27,16 @@ seeds = YAML.load(open('db/seeds.yml').read)
 
 puts 'Create statuses...'
 
-seeds[:statuses].each do |status|
-  code = status.first
-  description = status.last
-  status = Status.new(code: code, description: description )
+n = 1
+seeds[:statuses].each do |number, value|
+  order = n 
+  code = value['code']
+  description = value['description']
+  next_action = value['next_action']
+  status = Status.new(code: code, description: description, order: order, next_action: next_action )
   status.save
-  puts "#{code} created"
+  puts "#{code} #{order} number created"
+  n += 1
 end
 
 puts 'create roles...'
@@ -60,7 +65,6 @@ end
 puts 'create candidates...'
 
 seeds[:candidates].each do |number, value|
-  puts value
   user = User.find_by(last_name: value['user'])
   status = Status.find_by(code: value['status'])
   election = Election.find_by(name: 'Législatives')

@@ -1,2 +1,22 @@
-<h1>Candidates#edit</h1>
-<p>Find me in app/views/candidates/edit.html.erb</p>
+<h1><%= @candidate.user.first_name %> <%= @candidate.user.last_name %></h1>
+<div class="f-new">
+  <ul class="new-form">
+    <%= simple_form_for @candidate do |f| %>
+      <%= f.simple_fields_for @candidate.user do |user| %>
+        <%= user.input :first_name %>
+        <%= user.input :last_name %>
+      <% end %>
+      <%= f.input :district %>
+      <%= f.input :profession %>
+      <%= f.simple_fields_for @candidate.deputy do |dep| %>
+      <div>Suppléant:</div>
+        <%= dep.input :first_name %>
+        <%= dep.input :last_name %>
+        <%= dep.input :profession %>
+        <%= dep.input :email %>
+        <%= dep.input :address %>
+      <% end %>
+      <%= f.submit 'Valider' %>
+    <% end %>
+  </ul>
+</div>
