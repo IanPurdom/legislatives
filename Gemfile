@@ -6,7 +6,7 @@ gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
-gem 'rails', '5.1.4'
+gem 'rails', '5.2.0'
 gem 'redis'
 gem 'pundit'
 
@@ -21,6 +21,7 @@ gem 'pry', '~> 0.10.3'
 gem 'pry-nav', '~> 0.2.4'
 gem 'rubyzip', require: 'zip'
 gem 'jquery-rails'
+gem 'bootsnap'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
