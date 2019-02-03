@@ -1,5 +1,5 @@
 class CandidatesController < ApplicationController
-  before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster, :validate, :reject]
+  before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster, :validate, :reject, :attach]
 
   def index 
     @candidates = policy_scope(Candidate)
@@ -63,13 +63,14 @@ class CandidatesController < ApplicationController
   def poster
     poster = PosterService.new(@candidate)
     poster.create
-    render :show
+    poster.attach
   end
 
   def validate
     authorize @candidate
     @candidate.status = Status.find_by(order: (@candidate.status.order + 1))
     Audit.create!(action: 'validate', candidate: @candidate, status: (@candidate.status) , user: current_user, validation_date: Time.now) if @candidate.save
+    poster if @candidate.status.code == 'PENDING_COM'
     redirect_to candidate_path(@candidate)
   end
 
@@ -80,6 +81,11 @@ class CandidatesController < ApplicationController
     redirect_to candidate_path(@candidate)
   end
 
+  def attach
+    @candidate.kits.attach(candidate_params[:kits])
+    redirect_to candidate_path(@candidate) 
+  end
+  
   private
 
   def set_candidate
@@ -87,7 +93,7 @@ class CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession)
+    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, documents: [], kits: [])
   end
 
   def deputy_params

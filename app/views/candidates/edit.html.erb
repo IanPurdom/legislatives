@@ -16,6 +16,7 @@
         <%= dep.input :email %>
         <%= dep.input :address %>
       <% end %>
+      <%= f.file_field :documents, multiple: true %>
       <%= f.submit 'Valider' %>
     <% end %>
   </ul>

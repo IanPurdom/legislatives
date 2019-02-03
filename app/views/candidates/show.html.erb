@@ -10,7 +10,7 @@
   <div><%= @candidate.deputy.first_name %> <%= @candidate.deputy.last_name %></div>
   <div><%= @candidate.deputy.profession %></div>
 <% end %>
-
+<br>
 <% if @candidate.status.code == 'OPEN' %>
   <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
   <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
@@ -35,6 +35,34 @@
 <%# end %>
 <br>
 <br>
+
+<% if current_user.role.code == 'COM' %>
+<p>
+  <strong>Fichiers Indesign:</strong> <br/>
+  <% if @candidate.documents.attached? %>
+    <% @candidate.documents.each do |document| %>
+      <%= link_to document.filename, document, target: '_blank' %> <br/>
+    <% end %>
+  <% else %>
+    <p>pas de documents</p>
+  <% end %>
+</p>
+  <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
+    <%= cand.file_field :kits, multiple: true %>
+    <%= cand.submit 'Valider' %>
+  <% end %>
+<% end %>
+<br>
+<% if @candidate.kits.attached? %>
+<strong>Kit de campagne:</strong>
+  <% @candidate.kits.each do |kit| %>
+    <%= image_tag kit.preview(resize_to_limit: [100, 100]) if kit.previewable?%>
+    <%= image_tag kit(resize_to_limit: [100, 100]) if ['image/jpeg', 'image/png'].include? kit.content_type%>
+    <%= link_to kit.filename, kit, target: '_blank'%> <br/>
+  <% end %>
+<% end %>
+
+
 <br>
 <div><strong>Audit:</strong></div>
 <% @candidate.audits.each do |audit| %>
