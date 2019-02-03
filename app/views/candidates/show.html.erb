@@ -16,19 +16,19 @@
   <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
 <% elsif @candidate.status.code == 'PENDING_SD' && (current_user.role.code == 'DNF' || current_user.role.code == 'SD' || current_user.role.code == 'COM')%>  
   <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-  <%= link_to "Renvoyer candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+  <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
   <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
 <% elsif @candidate.status.code == 'PENDING_DNF' && (current_user.role.code == 'DNF' || current_user.role.code == 'COM') %>
   <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-  <%= link_to "Renvoyer candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+  <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
   <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
 <% elsif @candidate.status.code == 'PENDING_COM' && current_user.role.code == 'COM' %>
   <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-  <%= link_to "Renvoyer candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+  <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
   <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
 <% elsif @candidate.status.code == 'PENDING_CANDIDATE' && current_user == @candidate.user %> 
   <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-  <%= link_to "Renvoyer candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+  <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
 <% end %>
 <%# if @candidate.status ==  %>
   <%#= link_to 'créer kit de campagne', poster_candidate_path(@candidate) %>
