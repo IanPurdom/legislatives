@@ -23,9 +23,9 @@ google:
 
 google_dev:
   service: GCS
-  project: RN-Legislatives
-  credentials: <%= Rails.root.join("config/secrets/RN-Legislatives-candidates.json") %>
-  bucket: rn-candidates
+  project: RN-Legislatives-dev
+  credentials: <%= Rails.root.join("config/secrets/RN-Legislatives-candidates-dev.json") %>
+  bucket: rn-candidates-dev
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:

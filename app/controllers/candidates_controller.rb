@@ -1,5 +1,5 @@
 class CandidatesController < ApplicationController
-  before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster, :validate, :reject, :attach]
+  before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster, :validate, :reject, :attach, :remove_attachment, :remove_kits_attachment, :remove_documents_attachment]
 
   def index 
     @candidates = policy_scope(Candidate)
@@ -76,16 +76,23 @@ class CandidatesController < ApplicationController
 
   def reject
     authorize @candidate
-    @candidate.status = Status.find_by(order: (@candidate.status.order - 1))
+    @candidate.status = Status.find_by(order: (@candidate.status.order - 1)) 
     Audit.create!(action: 'reject', candidate: @candidate, status: (@candidate.status) , user: current_user, validation_date: Time.now) if @candidate.save
     redirect_to candidate_path(@candidate)
   end
 
   def attach
-    @candidate.kits.attach(candidate_params[:kits])
+    doc_type = candidate_params[:doc_type]
+    @candidate.send("#{doc_type}").attach(candidate_params[doc_type])
     redirect_to candidate_path(@candidate) 
   end
-  
+
+  def remove_attachment
+    doc_type = params[:doc_type]
+    @candidate.send("#{doc_type}").find(params[:attachment]).purge
+    redirect_to candidate_path(@candidate) 
+  end
+
   private
 
   def set_candidate
@@ -93,7 +100,7 @@ class CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, documents: [], kits: [])
+    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :attachment, :doc_type ,documents: [], kits: [])
   end
 
   def deputy_params

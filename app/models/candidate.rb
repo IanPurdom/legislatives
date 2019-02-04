@@ -9,4 +9,6 @@ class Candidate < ApplicationRecord
   has_one :deputy, dependent: :destroy
   accepts_nested_attributes_for :deputy
   validates :district, presence: true
+
+  attr_accessor :attachment, :doc_type
 end
