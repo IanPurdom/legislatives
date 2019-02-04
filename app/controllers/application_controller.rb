@@ -3,6 +3,15 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   include Pundit
   
+  protected
+  def after_sign_in_path_for(resource)
+    if current_user.role.code == 'CAN' && !candidate.nil?
+    request.env['omniauth.origin'] || stored_location_for(resource) || candidate_path(candidate)
+    else 
+      request.env['omniauth.origin'] || stored_location_for(resource) || candidates_path
+    end  
+  end
+
   # Pundit: white-list approach.
   # after_action :verify_authorized, except: :index, unless: :skip_pundit?
   # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit
@@ -19,4 +28,10 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
+
+
+  def candidate
+    current_user.candidate
+  end
+
 end
