@@ -69,7 +69,7 @@ class CandidatePolicy < ApplicationPolicy
     current_user.role.code == 'COM'
   end
 
-  def remove_kits_attachment?
+  def remove_attachment?
     current_user.role.code == 'COM'
   end
 

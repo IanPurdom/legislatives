@@ -39,12 +39,15 @@
 <% if current_user.role.code == 'COM' && @candidate.status.order > 3%>
   <strong>Fichiers Indesign:</strong> <br/>
   <% if @candidate.documents.attached? %>
+    <ul>
     <% @candidate.documents.each do |document| %>
-      <%= link_to document.filename, document, target: '_blank' %>
+      <li><%= link_to document.filename, document, target: '_blank' %>
       <% if current_user.role.code == 'COM'%>
         <%= link_to 'Supprimer', remove_attachment_candidate_path(@candidate, attachment: document.id, doc_type: 'documents'), method: :post, class: "btn btn-danger"%>
-      <% end %>
+        </li>
+      <% end %>   
     <% end %>
+    </ul>
   <% end %>
   <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
     <%= cand.file_field :documents, multiple: true %>
