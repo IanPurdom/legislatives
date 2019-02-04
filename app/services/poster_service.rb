@@ -1,4 +1,4 @@
-require 'FileUtils'
+# require 'fileUtils'
 require 'zip'
 require 'nokogiri'
 # require 'zip/zip'
@@ -9,8 +9,9 @@ class PosterService
   attr_reader :first_name, :last_name, :profession, :district, :first_name_dep, :last_name_dep 
   
   def initialize(candidate)
-    @first_name = candidate.first_name
-    @last_name = candidate.last_name
+    @candidate = candidate
+    @first_name = candidate.user.first_name
+    @last_name = candidate.user.last_name
     @profession = candidate.profession
     @district = candidate.district
     @first_name_dep = candidate.deputy.first_name
@@ -18,15 +19,30 @@ class PosterService
   end
 
   def create
-    dir = Rails.root.join('data')
-    folder = "#{first_name}-#{last_name}" 
+    dir
+    folder
     copy(dir, folder) unless File.exist?("#{dir}/#{folder}")
     xml("#{dir}/#{folder}/Stories", xmls(dir))
     compress(dir, "#{dir}/#{folder}")
     remove("#{dir}/#{folder}")
   end
 
+  def attach
+    dir
+    folder
+    @candidate.documents.attach(io: File.open("#{dir}/#{folder}.idml"), filename: "#{folder}.idml", content_type: "application/idml")
+    remove("#{dir}/#{folder}.idml")
+  end
+
   private
+
+  def dir
+    Rails.root.join('data')
+  end
+
+  def folder
+    "#{first_name}-#{last_name}" 
+  end
 
   def copy(dir, folder)
     FileUtils.copy_entry("#{dir}/template","#{dir}/#{folder}")

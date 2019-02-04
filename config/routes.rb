@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     get 'poster', on: :member
     get 'validate', on: :member
     get 'reject', on: :member
+    post 'attach', on: :member
+    post 'remove_attachment', on: :member
   end
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -10,7 +10,7 @@
   <div><%= @candidate.deputy.first_name %> <%= @candidate.deputy.last_name %></div>
   <div><%= @candidate.deputy.profession %></div>
 <% end %>
-
+<br>
 <% if @candidate.status.code == 'OPEN' %>
   <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
   <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
@@ -35,6 +35,48 @@
 <%# end %>
 <br>
 <br>
+
+<% if current_user.role.code == 'COM' && @candidate.status.order > 3%>
+  <strong>Fichiers Indesign:</strong> <br/>
+  <% if @candidate.documents.attached? %>
+    <ul>
+    <% @candidate.documents.each do |document| %>
+      <li><%= link_to document.filename, document, target: '_blank' %>
+      <% if current_user.role.code == 'COM'%>
+        <%= link_to 'Supprimer', remove_attachment_candidate_path(@candidate, attachment: document.id, doc_type: 'documents'), method: :post, class: "btn btn-danger"%>
+        </li>
+      <% end %>   
+    <% end %>
+    </ul>
+  <% end %>
+  <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
+    <%= cand.file_field :documents, multiple: true %>
+     <%= cand.hidden_field :doc_type, :value => 'documents' %>
+    <%= cand.submit 'Valider' %>
+  <% end %>
+<% end %>
+<br>
+<br>
+<% if @candidate.status.order > 3 %>
+  <strong>Kit de campagne:</strong> 
+  <ul>
+  <% @candidate.kits.each do |kit| %>
+    <%#= image_tag kit.preview(resize_to_limit: [100, 100]) if kit.previewable?%>
+    <%#= image_tag kit.variant(resize_to_limit: [100, 100]) if ['image/jpeg', 'image/png'].include? kit.content_type%>
+    <li><%= link_to kit.filename, kit, target: '_blank'%> 
+    <% if current_user.role.code == 'COM'%>
+      <%= link_to 'Supprimer', remove_attachment_candidate_path(@candidate, attachment: kit.id, doc_type: 'kits'), method: :post, class: "btn btn-danger"%>
+    <% end %>
+    </li>   
+  <% end %>
+  </ul>
+    <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
+    <%= cand.file_field :kits, multiple: true %>
+    <%= cand.hidden_field :doc_type, :value => 'kits' %>
+    <%= cand.submit 'Valider' %>
+  <% end %>
+<% end %>
+
 <br>
 <div><strong>Audit:</strong></div>
 <% @candidate.audits.each do |audit| %>

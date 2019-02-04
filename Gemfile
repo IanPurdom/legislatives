@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '2.5.1'
 
 
 gem 'devise'
@@ -22,6 +22,9 @@ gem 'pry-nav', '~> 0.2.4'
 gem 'rubyzip', require: 'zip'
 gem 'jquery-rails'
 gem 'bootsnap'
+gem 'fileutils', '~> 0.7.2'
+gem "google-cloud-storage", "~> 1.8", require: false
+gem 'poppler', '~> 3.1.3'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

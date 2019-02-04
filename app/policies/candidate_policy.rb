@@ -65,4 +65,12 @@ class CandidatePolicy < ApplicationPolicy
     end
   end
 
+  def attach?
+    current_user.role.code == 'COM'
+  end
+
+  def remove_attachment?
+    current_user.role.code == 'COM'
+  end
+
 end
