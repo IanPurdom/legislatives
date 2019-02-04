@@ -6,7 +6,7 @@ gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
-gem 'rails', '5.2.0'
+gem 'rails', '5.2.1.1'
 gem 'redis'
 gem 'pundit'
 
@@ -24,7 +24,7 @@ gem 'jquery-rails'
 gem 'bootsnap'
 gem 'fileutils', '~> 0.7.2'
 gem "google-cloud-storage", "~> 1.8", require: false
-gem 'poppler', '~> 3.1.3'
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'
