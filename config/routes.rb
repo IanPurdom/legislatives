@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # get 'candidates/destroy'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :candidates do 
     get 'poster', on: :member
     get 'validate', on: :member

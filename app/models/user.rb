@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   has_one :candidate, dependent: :destroy
+  has_one :department
+  has_many :candidates, through: :department
   has_one :deputy, through: :candidates
-  has_many :candidates_as_secretary, :class_name => 'Candidate', :foreign_key => :secretary_id
+  # has_many :candidates_as_secretary, :class_name => 'Candidate', :foreign_key => :secretary_id
   has_many :audits
   belongs_to :role
   validates :first_name, presence: true
