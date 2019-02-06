@@ -1,9 +1,6 @@
 <div class="f-new">
   <ul class="new-form">
     <%= simple_form_for @candidate do |f| %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :email %>
       <%= f.input :district %>
       <%= f.input :profession %>
       <%= f.simple_fields_for @deputy do |dep| %>

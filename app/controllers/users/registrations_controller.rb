@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     user = User.new(configure_sign_up_params)
     user.save
+    # create_dept(configure_sign_up_params[:department])
     sign_in(user, scope: :user)
     redirect_to after_sign_up_path_for(user)
   end
@@ -46,6 +47,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     params.require(:user).permit(:first_name, :last_name, :email, :role_id, :password, :password_confirmation)
   end
+
+
+  # def create_dept
+  #   dept = Department.new
+  #   dept.create_dept_for_sd()
+  # end
 
   #protected
 
