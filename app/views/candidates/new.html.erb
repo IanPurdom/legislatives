@@ -1,9 +1,9 @@
 <div class="f-new">
   <ul class="new-form">
-    <%= simple_form_for @candidate do |f| %>
+    <%= simple_form_for Candidate.new do |f| %>
       <%= f.input :district %>
       <%= f.input :profession %>
-      <%= f.simple_fields_for @deputy do |dep| %>
+      <%= f.simple_fields_for Deputy.new do |dep| %>
       <div>Suppléant:</div>
         <%= dep.input :first_name %>
         <%= dep.input :last_name %>

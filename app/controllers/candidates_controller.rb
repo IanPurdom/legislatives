@@ -11,8 +11,6 @@ class CandidatesController < ApplicationController
   end
 
   def new
-    @candidate = Candidate.new
-    @deputy = Deputy.new
   end
 
   def create
@@ -28,7 +26,8 @@ class CandidatesController < ApplicationController
       end
       redirect_to candidate_path(@candidate)
     else
-     render :new 
+      flash[:alert] = "#{@candidate.errors.full_messages.to_sentence}"
+      redirect_to new_candidate_path
     end
   end
 

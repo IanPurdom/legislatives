@@ -6,4 +6,9 @@
     <div><%= link_to "#{candidate.user.first_name} #{candidate.user.last_name}", candidate_path(candidate)%></div>
   <% end %>
 <% end %>
-
+<br>
+<% if current_user.role.code != "CAN" && current_user.candidate.nil?%>
+	<%= link_to 'Créer votre candidature', new_candidate_path, class: "btn btn-primary" %>	
+<% elsif current_user.role.code != "CAN" && !current_user.candidate.nil?%>	
+	<%= link_to 'Modifier votre candidature', edit_candidate_path, class: "btn btn-primary" %>	
+<% end %>

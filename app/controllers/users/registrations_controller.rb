@@ -52,11 +52,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
 
-  # def create_dept
-  #   dept = Department.new
-  #   dept.create_dept_for_sd()
-  # end
-
   #protected
 
 
