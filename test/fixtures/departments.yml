@@ -3,9 +3,7 @@
 one:
   name: MyString
   code: MyString
-  user: one
 
 two:
   name: MyString
   code: MyString
-  user: two

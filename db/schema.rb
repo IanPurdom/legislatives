@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_05_092808) do
+ActiveRecord::Schema.define(version: 2019_02_09_120702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,10 +69,8 @@ ActiveRecord::Schema.define(version: 2019_02_05_092808) do
   create_table "departments", force: :cascade do |t|
     t.string "name"
     t.string "code"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_departments_on_user_id"
   end
 
   create_table "deputies", force: :cascade do |t|
@@ -121,6 +119,8 @@ ActiveRecord::Schema.define(version: 2019_02_05_092808) do
     t.string "first_name"
     t.string "last_name"
     t.bigint "role_id"
+    t.bigint "department_id"
+    t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_092808) do
   add_foreign_key "candidates", "elections"
   add_foreign_key "candidates", "statuses"
   add_foreign_key "candidates", "users"
-  add_foreign_key "departments", "users"
   add_foreign_key "deputies", "candidates"
+  add_foreign_key "users", "departments"
   add_foreign_key "users", "roles"
 end

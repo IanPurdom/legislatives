@@ -12,10 +12,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #POST /resource
   def create
     user = User.new(configure_sign_up_params)
-    user.save
-    # create_dept(configure_sign_up_params[:department])
-    sign_in(user, scope: :user)
-    redirect_to after_sign_up_path_for(user)
+    if user.save
+      sign_in(user, scope: :user)
+      redirect_to after_sign_up_path_for(user)
+    else
+      flash[:alert] = "#{user.errors.full_messages.to_sentence}"
+      redirect_to new_user_registration_path
+    end
   end
 
   #GET /resource/edit
@@ -45,7 +48,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def configure_sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :email, :role_id, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :department_id, :role_id, :password, :password_confirmation)
   end
 
 
