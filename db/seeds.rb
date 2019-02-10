@@ -83,10 +83,10 @@ seeds[:candidates].each do |number, value|
   district = value['district']
   profession = value['profession']
   mandate = value['mandate']
-  secretary = User.find_by(last_name: value['secretary'])
+  department = Department.find_by(code: value['department'])
   Candidate.create!(user_id: user.id, status_id: status.id, election_id: election.id, 
                     address: address, district: district, profession: profession, 
-                    mandate: mandate, secretary_id: secretary.id)
+                    mandate: mandate, department_id: department.id)
   puts "Candidate #{user.first_name} #{user.last_name} created"
 end
 

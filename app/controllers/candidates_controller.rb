@@ -3,7 +3,6 @@ class CandidatesController < ApplicationController
 
   def index 
     @candidates = policy_scope(Candidate)
-    @statuses_ids = @candidates.distinct.pluck(:status_id)
   end
 
   def show

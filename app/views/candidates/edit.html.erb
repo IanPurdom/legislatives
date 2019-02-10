@@ -8,13 +8,24 @@
       <% end %>
       <%= f.input :district %>
       <%= f.input :profession %>
-      <%= f.simple_fields_for @candidate.deputy do |dep| %>
-      <div>Suppléant:</div>
-        <%= dep.input :first_name %>
-        <%= dep.input :last_name %>
-        <%= dep.input :profession %>
-        <%= dep.input :email %>
-        <%= dep.input :address %>
+      <% if !@candidate.deputy.nil? %>
+        <%= f.simple_fields_for @candidate.deputy do |dep| %>
+        <div>Suppléant:</div>
+          <%= dep.input :first_name %>
+          <%= dep.input :last_name %>
+          <%= dep.input :profession %>
+          <%= dep.input :email %>
+          <%= dep.input :address %>
+        <% end %>
+      <% else %>
+        <%= f.simple_fields_for Deputy.new do |dep| %>
+        <div>Suppléant:</div>
+          <%= dep.input :first_name %>
+          <%= dep.input :last_name %>
+          <%= dep.input :profession %>
+          <%= dep.input :email %>
+          <%= dep.input :address %>
+        <% end %>
       <% end %>
       <%= f.file_field :documents, multiple: true %>
       <%= f.submit 'Valider' %>

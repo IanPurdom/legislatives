@@ -31,7 +31,7 @@
     district: 4ier circonscription des Essonnes
     status: 'OPEN'
     election: 'Législatives'
-    secretary: 'Monnier'
+    department: '1'
   :candidat_2:
     user: 'Duchemin'
     address: '10 boulevard National, Nanterre, 92000'
@@ -40,7 +40,7 @@
     district: 4ier circonscription du Vaucluse'
     status: 'OPEN'
     election: 'Législatives'
-    secretary: 'Monnier'
+    department: '1'
   :candidat_3:
     user: 'Michoux'
     address: '10 boulevard National, Nanterre, 92000'
@@ -49,7 +49,7 @@
     district: 4ier circonscription des Yvellines
     status: 'OPEN'
     election: 'Législatives'
-    secretary: 'Diaz'
+    department: '2'
   :candidat_4:
     user: 'Marton'
     address: '10 boulevard National, Nanterre, 92000'
@@ -58,7 +58,7 @@
     district: 4ier circonscription du Var'
     status: 'OPEN'
     election: 'Législatives'
-    secretary: 'Diaz'
+    department: '2'
 :users:
   :user_1:
     first_name: 'Jean-Claude'

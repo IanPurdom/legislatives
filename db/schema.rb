@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_09_120702) do
+ActiveRecord::Schema.define(version: 2019_02_09_211018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,9 +59,9 @@ ActiveRecord::Schema.define(version: 2019_02_09_120702) do
     t.bigint "status_id"
     t.string "mandate"
     t.string "address"
-    t.bigint "secretary_id"
+    t.bigint "department_id"
+    t.index ["department_id"], name: "index_candidates_on_department_id"
     t.index ["election_id"], name: "index_candidates_on_election_id"
-    t.index ["secretary_id"], name: "index_candidates_on_secretary_id"
     t.index ["status_id"], name: "index_candidates_on_status_id"
     t.index ["user_id"], name: "index_candidates_on_user_id"
   end
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2019_02_09_120702) do
   add_foreign_key "audits", "candidates"
   add_foreign_key "audits", "statuses"
   add_foreign_key "audits", "users"
+  add_foreign_key "candidates", "departments"
   add_foreign_key "candidates", "elections"
   add_foreign_key "candidates", "statuses"
   add_foreign_key "candidates", "users"

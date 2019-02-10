@@ -1,14 +1,24 @@
-<h1>Candidats</h1>
-
-<% @statuses_ids.each do |status_id| %>
-  <div><%= Status.find(status_id).description %></div>
-  <% @candidates.where(status_id: status_id).each do |candidate| %>  
-    <div><%= link_to "#{candidate.user.first_name} #{candidate.user.last_name}", candidate_path(candidate)%></div>
-  <% end %>
-<% end %>
-<br>
+<div class="container">
 <% if current_user.role.code != "CAN" && current_user.candidate.nil?%>
 	<%= link_to 'Créer votre candidature', new_candidate_path, class: "btn btn-primary" %>	
 <% elsif current_user.role.code != "CAN" && !current_user.candidate.nil?%>	
-	<%= link_to 'Modifier votre candidature', edit_candidate_path, class: "btn btn-primary" %>	
+	<%= link_to 'Modifier votre candidature', edit_candidate_path(current_user.candidate), class: "btn btn-primary" %>	
 <% end %>
+  <div class="row">
+  <% @candidates.each do |candidate| %>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card">
+        <div class='status'><%= candidate.status.description %></div>
+        <img src="http://kitt.lewagon.com/placeholder/users/ssaunier" alt="Avatar" style="width:100%">
+        <div class="text">
+          <h4><b><%= candidate.user.first_name %> <%= candidate.user.last_name %></b></h4> 
+          <p><%= candidate.profession %></p>
+          <div><%= candidate.department.name %>-<%= candidate.department.code %></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<%= javascript_pack_tag 'tuning' %>
