@@ -7,6 +7,7 @@
   <div class="row">
   <% @candidates.each do |candidate| %>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <%= link_to candidate_path(candidate) do %>
       <div class="card">
         <div class='status'><%= candidate.status.description %></div>
         <img src="http://kitt.lewagon.com/placeholder/users/ssaunier" alt="Avatar" style="width:100%">
@@ -16,6 +17,7 @@
           <div><%= candidate.department.name %>-<%= candidate.department.code %></div>
         </div>
       </div>
+      <% end %>
     </div>
   <% end %>
   </div>
