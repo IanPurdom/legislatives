@@ -1,7 +1,7 @@
 class Candidate < ApplicationRecord
   before_validation :set_department 
   before_validation :set_status, if: :status_nil?
-
+  has_one_attached :picture
   has_many_attached :documents
   has_many_attached :kits
   belongs_to :user

@@ -1,3 +1,8 @@
+<% if !@candidate.picture.attachment.nil? %>
+  <div><%= image_tag @candidate.picture %></div>
+<% else %>
+  <div><%= image_tag "empty_photo.jpg" %></div>
+<% end %>
 <div><strong><%= @candidate.status.code %></strong></div>
 <div><strong>Election <%= @candidate.election.name %> du <%= @candidate.election.election_date %></strong></div>
 <div><strong><%= @candidate.district %></strong></div>

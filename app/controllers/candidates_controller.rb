@@ -16,6 +16,7 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new(candidate_params)
     @candidate.user = current_user
     @candidate.election = Election.find_by(name:'Législatives')
+    @candidate.picture.attach(candidate_params[:picture]) unless candidate_params[:picture].nil?
     authorize @candidate
     if @candidate.save
       unless deputy_params[:last_name].empty?
@@ -36,6 +37,7 @@ class CandidatesController < ApplicationController
   def update
     authorize @candidate
     @candidate.update(candidate_params)
+    @candidate.picture.attach(candidate_params[:picture]) unless candidate_params[:picture].nil?
     if @candidate.save
       @candidate.deputy.update(deputy_params)
       if @candidate.deputy.save
@@ -98,7 +100,7 @@ class CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :attachment, :doc_type ,documents: [], kits: [])
+    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :picture, :attachment, :doc_type ,documents: [], kits: [])
   end
 
   def deputy_params

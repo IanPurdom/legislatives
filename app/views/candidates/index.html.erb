@@ -10,7 +10,11 @@
       <%= link_to candidate_path(candidate) do %>
       <div class="card">
         <div class='status'><%= candidate.status.description %></div>
-        <img src="http://kitt.lewagon.com/placeholder/users/ssaunier" alt="Avatar" style="width:100%">
+        <% if !candidate.picture.attachment.nil? %>
+          <div><%= image_tag candidate.picture, width: '100%' %></div>
+        <% else %>
+          <div><%= image_tag "empty_photo.jpg", width: '100%' %></div>
+        <% end %>
         <div class="text">
           <h4><b><%= candidate.user.first_name %> <%= candidate.user.last_name %></b></h4> 
           <p><%= candidate.profession %></p>
