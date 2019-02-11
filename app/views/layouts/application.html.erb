@@ -15,8 +15,7 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
-    <%= javascript_include_tag 'application','jquery', 'data-turbolinks-track' => true  %>
+    <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
 </html>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>

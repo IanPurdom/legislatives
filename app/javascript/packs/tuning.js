@@ -16,8 +16,8 @@ function changeColor() {
 	});
 }
 
-
-
-// document.addEventListener("DOMContentLoaded", (changeColor()))
-window.onload = changeColor()
+var $ = require('jquery');
+window.jQuery = $;
+window.$ = $;
 window.changeColor = changeColor
+window.onload = changeColor()

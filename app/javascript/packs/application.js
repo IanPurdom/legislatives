@@ -8,7 +8,7 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import "bootstrap";
-//= require sweetalert2
-//= require rails-sweetalert2-confirm
 //= require jquery
 //= require jquery_ujs
+//= require sweetalert2
+//= require rails-sweetalert2-confirm
