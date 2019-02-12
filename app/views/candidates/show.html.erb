@@ -1,89 +1,92 @@
-<% if !@candidate.picture.attachment.nil? %>
-  <div><%= image_tag @candidate.picture %></div>
-<% else %>
-  <div><%= image_tag "empty_photo.jpg" %></div>
-<% end %>
-<div><strong><%= @candidate.status.code %></strong></div>
-<div><strong>Election <%= @candidate.election.name %> du <%= @candidate.election.election_date %></strong></div>
-<div><strong><%= @candidate.district %></strong></div>
-<div><%= @candidate.user.first_name %> <%= @candidate.user.last_name %></div>
-<div><%= @candidate.profession %></div>
-<div><%= @candidate.user.email %></div>
-<div><%= @candidate.mandate %></div>
-<div><strong>Suppléant:</strong></div>
-<% unless @candidate.deputy.nil? %>
-  <div><%= @candidate.deputy.first_name %> <%= @candidate.deputy.last_name %></div>
-  <div><%= @candidate.deputy.profession %></div>
-<% end %>
-<br>
-<% if @candidate.status.code == 'OPEN' %>
-  <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-  <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
-<% elsif @candidate.status.code == 'PENDING_SD' && (current_user.role.code == 'DNF' || current_user.role.code == 'SD' || current_user.role.code == 'COM')%>  
-  <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-  <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
-  <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
-<% elsif @candidate.status.code == 'PENDING_DNF' && (current_user.role.code == 'DNF' || current_user.role.code == 'COM') %>
-  <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-  <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
-  <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
-<% elsif @candidate.status.code == 'PENDING_COM' && current_user.role.code == 'COM' %>
-  <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-  <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
-  <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
-<% elsif @candidate.status.code == 'PENDING_CANDIDATE' && current_user == @candidate.user %> 
-  <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-  <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
-<% end %>
-<%# if @candidate.status ==  %>
-  <%#= link_to 'créer kit de campagne', poster_candidate_path(@candidate) %>
-<%# end %>
-<br>
-<br>
 
-<% if current_user.role.code == 'COM' && @candidate.status.order > 3%>
-  <strong>Fichiers Indesign:</strong> <br/>
-  <% if @candidate.documents.attached? %>
-    <ul>
-    <% @candidate.documents.each do |document| %>
-      <li><%= link_to document.filename, document, target: '_blank' %>
-      <% if current_user.role.code == 'COM'%>
-        <%= link_to 'Supprimer', remove_attachment_candidate_path(@candidate, attachment: document.id, doc_type: 'documents'), method: :post, class: "btn btn-danger"%>
-        </li>
-      <% end %>   
+<div class="container">
+  <div class="row hidden-sm hidden-md hidden-lg">
+    <div class="status-desc-xs"><%= @candidate.status.description %></div>
+    <% if !@candidate.picture.attachment.nil? %>
+      <%= image_tag @candidate.picture, class:"show-photo-xs" %>
+    <% else %>
+      <%= image_tag "empty_photo.jpg", class:"show-photo-xs" %>
     <% end %>
-    </ul>
-  <% end %>
-  <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
-    <%= cand.file_field :documents, multiple: true %>
-     <%= cand.hidden_field :doc_type, :value => 'documents' %>
-    <%= cand.submit 'Valider' %>
-  <% end %>
-<% end %>
-<br>
-<br>
-<% if @candidate.status.order > 4 %>
-  <strong>Kit de campagne:</strong> 
-  <ul>
-  <% @candidate.kits.each do |kit| %>
-    <%#= image_tag kit.preview(resize_to_limit: [100, 100]) if kit.previewable?%>
-    <%#= image_tag kit.variant(resize_to_limit: [100, 100]) if ['image/jpeg', 'image/png'].include? kit.content_type%>
-    <li><%= link_to kit.filename, kit, target: '_blank'%> 
-    <% if current_user.role.code == 'COM'%>
-      <%= link_to 'Supprimer', remove_attachment_candidate_path(@candidate, attachment: kit.id, doc_type: 'kits'), method: :post, class: "btn btn-danger"%>
+    <div class="text-cand-xs" >
+      <div><strong>Election <%= @candidate.election.name %> du <%= @candidate.election.election_date %></strong></div>
+      <div><strong><%= @candidate.district %></strong></div>
+      <div>Prénom: <%= @candidate.user.first_name %> <%= @candidate.user.last_name %></div>
+      <div>Profession: <%= @candidate.profession %></div>
+      <div>Courriel: <%= @candidate.user.email %></div>
+      <div>Mandat: <%= @candidate.mandate %></div>
+      <div><strong>Suppléant:</strong></div>
+      <% unless @candidate.deputy.nil? %>
+        <div>Prénom: <%= @candidate.deputy.first_name %> <%= @candidate.deputy.last_name %></div>
+        <div>Nom: <%= @candidate.deputy.profession %></div>
+      <% end %>
+   </div>
+   <div>
+    <% if @candidate.status.code == 'OPEN' %>
+      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
+      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+    <% elsif @candidate.status.code == 'PENDING_SD' && (current_user.role.code == 'DNF' || current_user.role.code == 'SD' || current_user.role.code == 'COM')%>  
+      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
+      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+    <% elsif @candidate.status.code == 'PENDING_DNF' && (current_user.role.code == 'DNF' || current_user.role.code == 'COM') %>
+      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
+      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+    <% elsif @candidate.status.code == 'PENDING_COM' && current_user.role.code == 'COM' %>
+      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
+      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+    <% elsif @candidate.status.code == 'PENDING_CANDIDATE' && current_user == @candidate.user %> 
+      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
+      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
     <% end %>
-    </li>   
-  <% end %>
-  </ul>
-    <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
-    <%= cand.file_field :kits, multiple: true %>
-    <%= cand.hidden_field :doc_type, :value => 'kits' %>
-    <%= cand.submit 'Valider' %>
-  <% end %>
-<% end %>
+  </div>   
 
-<br>
-<div><strong>Audit:</strong></div>
-<% @candidate.audits.each do |audit| %>
-  <div>Date de validation: <%= audit.validation_date %> Status: <%= audit.status.code %> <%= audit.status.next_action %>utilisateur: <%= audit.user.first_name%> <%= audit.user.last_name%> departement: <%= audit.user.role.code %></div>
-<% end  %>
+    <% if current_user.role.code == 'COM' && @candidate.status.order > 3%>
+      <strong>Fichiers Indesign:</strong> <br/>
+      <% if @candidate.documents.attached? %>
+        <ul>
+        <% @candidate.documents.each do |document| %>
+          <li><%= link_to document.filename, document, target: '_blank' %>
+          <% if current_user.role.code == 'COM'%>
+            <%= link_to 'Supprimer', remove_attachment_candidate_path(@candidate, attachment: document.id, doc_type: 'documents'), method: :post, class: "btn btn-danger"%>
+            </li>
+          <% end %>   
+        <% end %>
+        </ul>
+      <% end %>
+      <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
+        <%= cand.file_field :documents, multiple: true %>
+         <%= cand.hidden_field :doc_type, :value => 'documents' %>
+        <%= cand.submit 'Valider' %>
+      <% end %>
+    <% end %>
+    <br>
+    <br>
+    <% if @candidate.status.order > 4 %>
+      <strong>Kit de campagne:</strong> 
+      <ul>
+      <% @candidate.kits.each do |kit| %>
+        <%#= image_tag kit.preview(resize_to_limit: [100, 100]) if kit.previewable?%>
+        <%#= image_tag kit.variant(resize_to_limit: [100, 100]) if ['image/jpeg', 'image/png'].include? kit.content_type%>
+        <li><%= link_to kit.filename, kit, target: '_blank'%> 
+        <% if current_user.role.code == 'COM'%>
+          <%= link_to 'Supprimer', remove_attachment_candidate_path(@candidate, attachment: kit.id, doc_type: 'kits'), method: :post, class: "btn btn-danger"%>
+        <% end %>
+        </li>   
+      <% end %>
+      </ul>
+        <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
+        <%= cand.file_field :kits, multiple: true %>
+        <%= cand.hidden_field :doc_type, :value => 'kits' %>
+        <%= cand.submit 'Valider' %>
+      <% end %>
+    <% end %>
+
+    <br>
+    <div><strong>Audit:</strong></div>
+    <% @candidate.audits.each do |audit| %>
+      <div>Date de validation: <%= audit.validation_date %> Status: <%= audit.status.code %> <%= audit.status.next_action %>utilisateur: <%= audit.user.first_name%> <%= audit.user.last_name%> departement: <%= audit.user.role.code %></div>
+    <% end  %>
+  </div>
+</div>

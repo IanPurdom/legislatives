@@ -4,16 +4,16 @@
 <% elsif current_user.role.code != "CAN" && !current_user.candidate.nil?%>	
 	<%= link_to 'Modifier votre candidature', edit_candidate_path(current_user.candidate), class: "btn btn-primary" %>	
 <% end %>
-  <div class="row">
+  <div class="hidden-xs">
   <% @candidates.each do |candidate| %>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="col-md-4">
       <%= link_to candidate_path(candidate) do %>
       <div class="card">
         <div class='status'><%= candidate.status.description %></div>
         <% if !candidate.picture.attachment.nil? %>
-          <div><%= image_tag candidate.picture, width: '100%' %></div>
+          <%= image_tag candidate.picture, class: "image-card"%>
         <% else %>
-          <div><%= image_tag "empty_photo.jpg", width: '100%' %></div>
+          <%= image_tag "empty_photo.jpg" , class: "image-card"%>
         <% end %>
         <div class="text">
           <h4><b><%= candidate.user.first_name %> <%= candidate.user.last_name %></b></h4> 
@@ -25,6 +25,29 @@
     </div>
   <% end %>
   </div>
+
+<!-- Appearing on mobile only -->
+  <div class="row hidden-sm hidden-md hidden-lg">
+  <% @candidates.each do |candidate| %>
+    <div class="col-12">
+      <%= link_to candidate_path(candidate) do %>
+      <div class="card-xs">
+        <div class='status'><%= candidate.status.description %></div>
+        <% if !candidate.picture.attachment.nil? %>
+          <%= image_tag candidate.picture, class: "image-card"%>
+        <% else %>
+          <%= image_tag "empty_photo.jpg" , class: "image-card"%>
+        <% end %>
+        <div class="text">
+          <h4><b><%= candidate.user.first_name %> <%= candidate.user.last_name %></b></h4> 
+          <p><%= candidate.profession %></p>
+          <div><%= candidate.department.name %>-<%= candidate.department.code %></div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+
 </div>
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
 <%= javascript_pack_tag 'tuning' %>
