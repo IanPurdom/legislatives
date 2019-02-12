@@ -34,12 +34,12 @@
       <div class="card-xs">
         <div class='status'><%= candidate.status.description %></div>
         <% if !candidate.picture.attachment.nil? %>
-          <%= image_tag candidate.picture, class: "image-card"%>
+          <%= image_tag candidate.picture, class: "image-card-xs"%>
         <% else %>
-          <%= image_tag "empty_photo.jpg" , class: "image-card"%>
+          <%= image_tag "empty_photo.jpg" , class: "image-card-xs"%>
         <% end %>
         <div class="text">
-          <h4><b><%= candidate.user.first_name %> <%= candidate.user.last_name %></b></h4> 
+          <div><b><%= candidate.user.first_name %> <%= candidate.user.last_name %></b></div> 
           <p><%= candidate.profession %></p>
           <div><%= candidate.department.name %>-<%= candidate.department.code %></div>
         </div>

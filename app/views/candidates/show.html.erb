@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="row hidden-sm hidden-md hidden-lg">
-    <div class="status-desc-xs"><%= @candidate.status.description %></div>
+    <div class="status-desc-xs status"><%= @candidate.status.description %></div>
     <% if !@candidate.picture.attachment.nil? %>
       <%= image_tag @candidate.picture, class:"show-photo-xs" %>
     <% else %>
@@ -20,28 +20,28 @@
         <div>Nom: <%= @candidate.deputy.profession %></div>
       <% end %>
    </div>
-   <div>
+   <div class="button-xs">
     <% if @candidate.status.code == 'OPEN' %>
-      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but-xs" %>
+      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary but-xs" %>
     <% elsif @candidate.status.code == 'PENDING_SD' && (current_user.role.code == 'DNF' || current_user.role.code == 'SD' || current_user.role.code == 'COM')%>  
-      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
-      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but-xs" %>
+      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning but-xs" %>
+      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary but-xs" %>
     <% elsif @candidate.status.code == 'PENDING_DNF' && (current_user.role.code == 'DNF' || current_user.role.code == 'COM') %>
-      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
-      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but-xs" %>
+      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning but-xs" %>
+      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary but-xs" %>
     <% elsif @candidate.status.code == 'PENDING_COM' && current_user.role.code == 'COM' %>
-      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
-      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary" %>
+      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but-xs" %>
+      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning but-xs" %>
+      <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary but-xs" %>
     <% elsif @candidate.status.code == 'PENDING_CANDIDATE' && current_user == @candidate.user %> 
-      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success" %>
-      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning" %>
+      <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but-xs" %>
+      <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning but-xs" %>
     <% end %>
   </div>   
-
+  <div class="files-xs">
     <% if current_user.role.code == 'COM' && @candidate.status.order > 3%>
       <strong>Fichiers Indesign:</strong> <br/>
       <% if @candidate.documents.attached? %>
@@ -82,11 +82,16 @@
         <%= cand.submit 'Valider' %>
       <% end %>
     <% end %>
-
-    <br>
-    <div><strong>Audit:</strong></div>
-    <% @candidate.audits.each do |audit| %>
-      <div>Date de validation: <%= audit.validation_date %> Status: <%= audit.status.code %> <%= audit.status.next_action %>utilisateur: <%= audit.user.first_name%> <%= audit.user.last_name%> departement: <%= audit.user.role.code %></div>
+  </div>
+  <% if @candidate.audits.any? %>
+  <div class="audit-xs">
+    <strong>Audit:</strong>
+    <% @candidate.audits.sort.reverse.each do |audit| %>
+      <div class="audit-text-xs"><%= audit.validation_date.strftime("Validé le %d/%m/%Y à %I:%M%p")%> par <%= audit.user.first_name%> <%= audit.user.last_name%> (<%= audit.user.role.code %>)<br>
+            Status: <%= audit.status.code %> <br>
+      </div>
     <% end  %>
   </div>
+  <% end %>
 </div>
+<%= javascript_pack_tag 'tuning' %>

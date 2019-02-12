@@ -35,7 +35,7 @@
 /*-----------------for XS mobile------------------*/
 
 .card-xs {
-  height: 52vh;
+  height: 55vh;
   width: 40vh;
   margin: 2.5vh 8vh;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -49,6 +49,13 @@
   color: white;
   height: 4.5vh;
   font-size: 2.5vh;
+}
+
+.image-card-xs {
+    width: 91%;
+    margin: 2vh;
+    height: 32.5vh;
+    border: solid black;
 }
 
 

@@ -1,7 +1,6 @@
 .status-desc-xs {
   height: 5vh;
   font-size: 3.2vh;
-  background-color: cadetblue;
 }
 
 .show-photo-xs {
@@ -11,6 +10,30 @@
   height: 50vh;
 }
 
+.button-xs {
+	display: flex;
+	flex-direction: column;
+}
+
+.but-xs {
+	margin: 2vh 4vh;
+}
+
 .text-cand-xs {
   margin: 3vh;
+}
+
+.files-xs {
+   margin: 6.5vh 1vh 0vh 4vh;
+}
+
+.audit-xs {
+   margin: 3vh;
+   border: solid;
+   padding: 1vh;
+}
+
+.audit-text-xs {
+   font-size: 2.5vh;
+   margin: 1vh;
 }
