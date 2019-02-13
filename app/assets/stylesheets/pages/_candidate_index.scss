@@ -1,0 +1,88 @@
+
+.candidate-wrapper {
+	align-content: flex-start;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.candidate-col {
+	flex: 0 0 100%;
+	padding: 0 5px;
+}
+
+@media (min-width: 544px) {
+	.candidate-col {
+		flex: 0 0 220px;
+		padding: 0 5px;
+	}
+}
+
+.candidate-card {
+	height: 278px;
+	margin: 5px 0;
+    background-color: white;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+    overflow: hidden;
+    position: relative;
+    transition: 1s;
+}
+
+.candidate-card-img {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  margin: auto;
+/*background-image: linear-gradient(220deg, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0.8) 90%);*/
+}
+
+
+.candidate-name {
+    position: absolute;
+    bottom: 83px;
+    left: 10px;
+}
+
+.candidate-name .candidate-name-light {
+    font-weight: 100;
+}
+
+.candidate-name h3 {
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    margin: 0;
+}
+
+.candidate-card-content {
+    padding: 10px;
+    width: 100%;
+}
+
+.candidate-card-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.candidate-card-content span.circo {
+    font-weight: 600;
+}
+
+
+.candidate-card-content span {
+    font-size:15px;
+}
+
+.candidate-card-link {
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+

@@ -1,7 +1,8 @@
 
 <div class="container">
   <div class="row hidden-sm hidden-md hidden-lg">
-    <div class="status-desc-xs status"><%= @candidate.status.description %></div>
+    <div class="status-desc-xs status"><%= @candidate.status.description %>
+    </div>
     <% if !@candidate.picture.attachment.nil? %>
       <%= image_tag @candidate.picture, class:"show-photo-xs" %>
     <% else %>
@@ -93,5 +94,14 @@
     <% end  %>
   </div>
   <% end %>
+  </div>
+
+
+<!-- -----------for regular screen---------- -->
+
+<div class="hidden-xs">
+  Don't panic! Screen for regular screen under construction
+</div>
+
 </div>
 <%= javascript_pack_tag 'tuning' %>
