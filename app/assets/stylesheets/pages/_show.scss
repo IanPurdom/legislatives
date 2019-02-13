@@ -1,39 +1,91 @@
-.status-desc-xs {
-  height: 5vh;
-  font-size: 3.2vh;
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
 }
 
-.show-photo-xs {
-   width:90%;
-  border:solid;
-  margin:3vh 3vh;
-  height: 50vh;
+.cand-wrapper {
+	display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    padding: 2vh 6vh;
+    background: white;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
 }
 
-.button-xs {
+.col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.candidate-status {
+    margin: auto;
+    margin-bottom: 2vh;
+    padding: 1vh;
+    border-radius: 0px 12px 0px 12px;
+    box-shadow: 3px 2px 1px rgba(0, 0, 0, 0.25);
+    color: white;
+    font-size: 19px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.candidate-photo {
+	display: flex;
+}
+
+@media (max-width: 544px) {
+	.candidate-img {
+		margin: auto;
+		width: 70%;
+	}
+	.button {
 	display: flex;
 	flex-direction: column;
+	}
+	.but {
+		margin: 2vh 4vh;
+	}
+
 }
 
-.but-xs {
-	margin: 2vh 4vh;
+@media (min-width: 545px) and (max-width: 992px){
+	.candidate-img {
+		margin: auto;
+		width: 50%;
+	}
 }
 
-.text-cand-xs {
+
+@media (min-width: 992px) {
+	.candidate-img {
+		margin: auto;
+		width: 35%;
+	}
+}
+
+.button {
+	display: flex;
+	justify-content: space-around;
+}
+
+
+.text-cand {
   margin: 3vh;
 }
 
-.files-xs {
+.files {
    margin: 6.5vh 1vh 0vh 4vh;
 }
 
-.audit-xs {
+.audit {
    margin: 3vh;
    border: solid;
    padding: 1vh;
 }
 
-.audit-text-xs {
-   font-size: 2.5vh;
+.audit-text {
+   font-size: 2vh;
    margin: 1vh;
 }

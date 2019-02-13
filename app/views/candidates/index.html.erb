@@ -12,25 +12,22 @@
         <div class="candidate-card">
           <% if candidate.picture.attachment.nil? %>
             <%= image_tag "empty_photo.jpg", style: "background-image:linear-gradient(220deg, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0.8) 90%)", class:"candidate-card-img"%>
-            <div class="candidate-name">
-              <h3 class="candidate-name-light"><%= candidate.user.first_name %></h3>
-              <h3><%= candidate.user.last_name %></h3>
-            </div>
-            <span></span>
           <% else %>
             <%= image_tag candidate.picture, style: "background-image:linear-gradient(220deg, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0.8) 90%)", class:"candidate-card-img" %>
+          <% end %>
             <div class="candidate-name">
               <h3 class="candidate-name-light"><%= candidate.user.first_name %></h3>
               <h3><%= candidate.user.last_name %></h3>
             </div>
+            <div class="candidate-macaron status"><%= candidate.status.code %></div>
             <span></span>
-          <% end %>
           <div class="candidate-card-content">
             <span>
-              <span class="circo"><%= candidate.district %></span>
+              <span class="circo"><%= candidate.district %></span><br>
               <span><%= candidate.department.name %>-<%= candidate.department.code %></span>
             </span>
           </div>
+        <%= link_to "", candidate_path(candidate), class:"candidate-card-link" %>
         </div>
       </div>
       <% end %>
