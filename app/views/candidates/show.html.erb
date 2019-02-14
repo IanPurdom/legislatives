@@ -23,69 +23,70 @@
             <div>Nom: <%= @candidate.deputy.profession %></div>
           <% end %>
        </div>
-       <div class="button">
-        <% if @candidate.status.code == 'OPEN' %>
-          <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
-          <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary but" %>
-        <% elsif @candidate.status.code == 'PENDING_SD' && (current_user.role.code == 'DNF' || current_user.role.code == 'SD' || current_user.role.code == 'COM')%>  
-          <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
-          <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning but" %>
-          <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary but" %>
-        <% elsif @candidate.status.code == 'PENDING_DNF' && (current_user.role.code == 'DNF' || current_user.role.code == 'COM') %>
-          <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
-          <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning but" %>
-          <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary but" %>
-        <% elsif @candidate.status.code == 'PENDING_COM' && current_user.role.code == 'COM' %>
-          <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
-          <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning but" %>
-          <%= link_to 'Modifier candidature', edit_candidate_path(@candidate), class: "btn btn-primary but" %>
-        <% elsif @candidate.status.code == 'PENDING_CANDIDATE' && current_user == @candidate.user %> 
-          <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
-          <%= link_to "Refuser candidature", reject_candidate_path(@candidate), class: "btn btn-warning but" %>
-        <% end %>
-      </div>   
       <div class="files">
         <% if current_user.role.code == 'COM' && @candidate.status.order > 3%>
-          <strong>Fichiers Indesign:</strong> <br/>
+          <strong>Fichiers Indesign:</strong></br>
+
           <% if @candidate.documents.attached? %>
-            <ul>
             <% @candidate.documents.each do |document| %>
-              <li><%= link_to document.filename, document, target: '_blank' %>
+              <%= link_to document.filename, document, target: '_blank' %>
               <% if current_user.role.code == 'COM'%>
-                <%= link_to 'Supprimer', remove_attachment_candidate_path(@candidate, attachment: document.id, doc_type: 'documents'), method: :post, class: "btn btn-danger"%>
-                </li>
+                <%= link_to '', remove_attachment_candidate_path(@candidate, attachment: document.id, doc_type: 'documents'), method: :post, class: "fas fa-trash-alt"%> <br>
               <% end %>   
             <% end %>
-            </ul>
           <% end %>
-          <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
-            <%= cand.file_field :documents, multiple: true %>
-             <%= cand.hidden_field :doc_type, :value => 'documents' %>
-            <%= cand.submit 'Valider' %>
-          <% end %>
+          <a class="fas fa-plus-circle add-doc"> Ajouter</a>
+          <div class="hidden">
+            <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
+              <%= cand.file_field :documents, multiple: true, id: "input-add-doc" %>
+               <%= cand.hidden_field :doc_type, :value => 'documents' %>
+              <%= cand.submit id: 'btn-input-add-doc' %>
+            <% end %>
+          </div>
         <% end %>
         <br>
         <br>
-        <% if @candidate.status.order > 4 %>
-          <strong>Kit de campagne:</strong> 
-          <ul>
+        <% if @candidate.status.order > 3 %>
+          <strong>Kit de campagne:</strong></br>
           <% @candidate.kits.each do |kit| %>
             <%#= image_tag kit.preview(resize_to_limit: [100, 100]) if kit.previewable?%>
             <%#= image_tag kit.variant(resize_to_limit: [100, 100]) if ['image/jpeg', 'image/png'].include? kit.content_type%>
-            <li><%= link_to kit.filename, kit, target: '_blank'%> 
+            <%= link_to kit.filename, kit, target: '_blank'%> 
             <% if current_user.role.code == 'COM'%>
-              <%= link_to 'Supprimer', remove_attachment_candidate_path(@candidate, attachment: kit.id, doc_type: 'kits'), method: :post, class: "btn btn-danger"%>
-            <% end %>
-            </li>   
+              <%= link_to '', remove_attachment_candidate_path(@candidate, attachment: kit.id, doc_type: 'kits'), method: :post, class: "fas fa-trash-alt"%></br>
+            <% end %>  
           <% end %>
-          </ul>
+          <a class="fas fa-plus-circle add-kit"> Ajouter</a>
+          <div class="hidden">
             <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
-            <%= cand.file_field :kits, multiple: true %>
-            <%= cand.hidden_field :doc_type, :value => 'kits' %>
-            <%= cand.submit 'Valider' %>
-          <% end %>
+              <%= cand.file_field :kits, multiple: true, id: "input-add-kit" %>
+              <%= cand.hidden_field :doc_type, :value => 'kits' %>
+              <%= cand.submit id: 'btn-input-add-kit'  %>
+            <% end %>
+          </div>
         <% end %>
       </div>
+       <div class="button">
+        <% if @candidate.status.code == 'OPEN' %>
+          <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
+          <%= link_to 'Modifier', edit_candidate_path(@candidate), class: "btn btn-primary but" %>
+        <% elsif @candidate.status.code == 'PENDING_SD' && (current_user.role.code == 'DNF' || current_user.role.code == 'SD' || current_user.role.code == 'COM')%>  
+          <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
+          <%= link_to "Refuser", reject_candidate_path(@candidate), class: "btn btn-warning but" %>
+          <%= link_to 'Modifier', edit_candidate_path(@candidate), class: "btn btn-primary but" %>
+        <% elsif @candidate.status.code == 'PENDING_DNF' && (current_user.role.code == 'DNF' || current_user.role.code == 'COM') %>
+          <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
+          <%= link_to "Refuser", reject_candidate_path(@candidate), class: "btn btn-warning but" %>
+          <%= link_to 'Modifier', edit_candidate_path(@candidate), class: "btn btn-primary but" %>
+        <% elsif @candidate.status.code == 'PENDING_COM' && current_user.role.code == 'COM' %>
+          <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
+          <%= link_to "Renvoyer", reject_candidate_path(@candidate), class: "btn btn-warning but" %>
+          <%= link_to 'Modifier', edit_candidate_path(@candidate), class: "btn btn-primary but" %>
+        <% elsif @candidate.status.code == 'PENDING_CANDIDATE' && current_user == @candidate.user %> 
+          <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
+          <%= link_to "Renvoyer", reject_candidate_path(@candidate), class: "btn btn-warning but" %>
+        <% end %>
+      </div>   
       <% if @candidate.audits.any? %>
         <div class="audit">
           <strong>Audit:</strong>
@@ -101,3 +102,4 @@
   </div>
 </div>
 <%= javascript_pack_tag 'tuning' %>
+<%= javascript_pack_tag 'tuning_show' %>

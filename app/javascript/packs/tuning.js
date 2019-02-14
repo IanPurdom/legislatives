@@ -42,7 +42,10 @@ function changeColorShow() {
 var $ = require('jquery');
 window.jQuery = $;
 window.$ = $;
+
+
 window.onload = changeColor()
 window.onload = changeColorShow()
-window.changeColor = changeColor
-window.changeColorShow = changeColorShow
+
+window.changeColor = changeColor;
+window.changeColorShow = changeColorShow;
