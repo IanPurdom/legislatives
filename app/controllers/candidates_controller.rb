@@ -2,7 +2,26 @@ class CandidatesController < ApplicationController
   before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster, :validate, :reject, :attach, :remove_attachment, :remove_kits_attachment, :remove_documents_attachment]
 
   def index 
-    @candidates = policy_scope(Candidate)
+    if !params.dig(:candidate,:query).nil?
+      (params[:candidate][:query])
+
+     sql =  "select * from candidates c
+     inner join statuses s on s.status_id = c.status_id
+     inner join departments d on d.department_id = c.department_id 
+     where s.code like "
+
+    else
+      @candidates = policy_scope(Candidate)
+    end
+
+
+    #  if params[:query_dept].present?
+    #   sql_query = "name ILIKE :query_dept OR code ILIKE :query_dept"
+    #   @candidates = Candidate.where(department: Department.where(sql_query, query_dept: "%#{params[:query_dept]}%"))
+    #   # @candidates = Candidate.where(department: Department.where("name ILIKE ?", "%#{params[:query_dept]}%"))
+    # else
+    #   @candidates = policy_scope(Candidate)
+    # end
   end
 
   def show
@@ -100,7 +119,7 @@ class CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :picture, :attachment, :doc_type ,documents: [], kits: [])
+    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :picture, :attachment, :doc_type ,documents: [], kits: [], query: [])
   end
 
   def deputy_params

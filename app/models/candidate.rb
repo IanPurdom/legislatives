@@ -14,7 +14,7 @@ class Candidate < ApplicationRecord
   accepts_nested_attributes_for :deputy
   validates :district, presence: true
 
-  attr_accessor :attachment, :doc_type
+  attr_accessor :attachment, :doc_type, :query
 
  private
 
