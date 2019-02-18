@@ -5,17 +5,15 @@
   <%#= link_to 'Modifier votre candidature', edit_candidate_path(current_user.candidate), class: "btn btn-primary" %>  
 <%# end %> -->
 
-<%#= form_tag candidates_path, multipart: true, method: :get do %>
-  <%#= text_field_tag :query, :multiple=>true%>
-  <%#= text_field_tag :query, :multiple=>true%>
-  <%#= submit_tag %>
-<%# end %>
+<%= form_tag candidates_path, method: :get do %>
+  <%= text_field_tag :department, params[:department]%>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
 
-  <%= simple_form_for Candidate.new, :url => candidates_path, method: :get do |q| %>
-    <%= q.input_field :query, multiple: true, placeholder: "Nom ou code"%>
-     <%= q.input_field :query, multiple: true, placeholder: "Status ou description"%>
-    <%= q.submit %>
-  <% end %>
+  <%#= simple_form_for Candidate.search(:department), :url => candidates_path, method: :get do |q| %>
+    <%#= q.input_field :department, placeholder: "Nom ou code"%>
+    <%#= q.submit %>
+  <%# end %>
 
   <div class="search-result">
     <div class="candidate-wrapper">

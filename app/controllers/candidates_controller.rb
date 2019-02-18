@@ -2,27 +2,31 @@ class CandidatesController < ApplicationController
   before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster, :validate, :reject, :attach, :remove_attachment, :remove_kits_attachment, :remove_documents_attachment]
 
   def index 
-    if !params.dig(:candidate,:query).nil?
-      (params[:candidate][:query])
-
-     sql =  "select * from candidates c
-     inner join statuses s on s.status_id = c.status_id
-     inner join departments d on d.department_id = c.department_id 
-     where s.code like "
-
-    else
-      @candidates = policy_scope(Candidate)
-    end
-
-
-    #  if params[:query_dept].present?
-    #   sql_query = "name ILIKE :query_dept OR code ILIKE :query_dept"
-    #   @candidates = Candidate.where(department: Department.where(sql_query, query_dept: "%#{params[:query_dept]}%"))
-    #   # @candidates = Candidate.where(department: Department.where("name ILIKE ?", "%#{params[:query_dept]}%"))
-    # else
-    #   @candidates = policy_scope(Candidate)
-    # end
+      @candidates = Candidate.where(department: Department.search(params[:department]))
   end
+
+  # def index 
+  #   if !params.dig(:candidate,:query).nil?
+  #    @candidates = Candidate.find_by_sql(sql_query(params[:candidate][:query])) 
+  #   else
+  #     @candidates = policy_scope(Candidate)
+  #   end
+  # end
+
+  # def sql_query(params)
+  #   params = nullify(params)
+  #   "SELECT * FROM candidates 
+  #    INNER JOIN statuses ON statuses.id = candidates.status_id
+  #    INNER JOIN departments ON departments.id = candidates.department_id 
+  #    WHERE COALESCE('#{params.last}', statuses.code) = statuses.code 
+  #    OR COALESCE('#{params.last}', departments.code) = departments.code"
+  # end  
+
+  # def nullify(params)
+  #   params.map do |p|
+  #     p == "" ? p = nil : p
+  #   end
+  # end 
 
   def show
     authorize @candidate
@@ -119,7 +123,7 @@ class CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :picture, :attachment, :doc_type ,documents: [], kits: [], query: [])
+    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :picture, :department, :attachment, :doc_type ,documents: [], kits: [], query: [])
   end
 
   def deputy_params
@@ -129,5 +133,6 @@ class CandidatesController < ApplicationController
   def user_params
     params.require(:candidate).require(:user).permit(:first_name, :last_name, :email)
   end
+
 
 end
