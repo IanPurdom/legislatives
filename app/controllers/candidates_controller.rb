@@ -1,32 +1,19 @@
 class CandidatesController < ApplicationController
   before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster, :validate, :reject, :attach, :remove_attachment, :remove_kits_attachment, :remove_documents_attachment]
 
-  def index 
-      @candidates = Candidate.where(department: Department.search(params[:department]))
+  def index
+    if !params[:query] && !params[:department] && !params[:status]
+      @candidates = Candidate.all
+    else
+      @search_candidates = Candidate.all
+      @search_candidates = Candidate.global_search(params[:query]) if params[:query]
+      @search_candidates = @search_candidates.where(department: Department.find_by(code: params[:department])) if params[:department]
+      @search_candidates = @search_candidates.where(status: Status.find_by(code: params[:status])) if params[:status]
+      respond_to do |format|
+        format.js { render partial: 'search-results'}
+      end
+    end
   end
-
-  # def index 
-  #   if !params.dig(:candidate,:query).nil?
-  #    @candidates = Candidate.find_by_sql(sql_query(params[:candidate][:query])) 
-  #   else
-  #     @candidates = policy_scope(Candidate)
-  #   end
-  # end
-
-  # def sql_query(params)
-  #   params = nullify(params)
-  #   "SELECT * FROM candidates 
-  #    INNER JOIN statuses ON statuses.id = candidates.status_id
-  #    INNER JOIN departments ON departments.id = candidates.department_id 
-  #    WHERE COALESCE('#{params.last}', statuses.code) = statuses.code 
-  #    OR COALESCE('#{params.last}', departments.code) = departments.code"
-  # end  
-
-  # def nullify(params)
-  #   params.map do |p|
-  #     p == "" ? p = nil : p
-  #   end
-  # end 
 
   def show
     authorize @candidate
@@ -123,7 +110,7 @@ class CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :picture, :department, :attachment, :doc_type ,documents: [], kits: [], query: [])
+    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :picture, :department, :status, :attachment, :doc_type ,documents: [], kits: [], query: [])
   end
 
   def deputy_params

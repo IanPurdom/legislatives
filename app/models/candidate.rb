@@ -17,6 +17,17 @@ class Candidate < ApplicationRecord
   attr_accessor :attachment, :doc_type
 
 
+  include PgSearch
+  pg_search_scope :global_search,
+    against: [ :profession, :mandate ],
+    associated_against: {
+      user:  [:first_name, :last_name]    
+    },
+    using: {
+      tsearch: { prefix: true}
+    }
+
+
  private
 
   def status_nil? 

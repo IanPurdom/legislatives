@@ -9,6 +9,7 @@ gem 'puma'
 gem 'rails', '5.2.1.1'
 gem 'redis'
 gem 'pundit'
+gem 'pg_search'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.4.0'
@@ -24,6 +25,8 @@ gem 'jquery-rails'
 gem 'bootsnap'
 gem 'fileutils', '~> 1.1.0'
 gem "google-cloud-storage", "~> 1.8", require: false
+gem 'turbolinks', '~> 5.2.0'
+
 
 
 group :development do
