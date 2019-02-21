@@ -10,6 +10,12 @@
   <%= submit_tag 'Search', name: nil %>
 <% end %>
 
+<%= form_tag candidates_path, method: :get do %>
+  <%= text_field_tag :status, params[:status]%>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+
   <%#= simple_form_for Candidate.search(:department), :url => candidates_path, method: :get do |q| %>
     <%#= q.input_field :department, placeholder: "Nom ou code"%>
     <%#= q.submit %>
