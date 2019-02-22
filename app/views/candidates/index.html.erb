@@ -6,17 +6,9 @@
 <%# end %> -->
 
 <div>
-  <%= form_tag candidates_path, method: :get, remote: true do %>
+  <%= form_tag candidates_path, method: :get do %>
     <%= text_field_tag :query, params[:query], placeholder: "Prénom, nom, profession ..."%>
-    <%= submit_tag 'Search', name: nil %>
-  <% end %>
-
-  <%= form_tag candidates_path, method: :get, remote: true do %>
     <%= text_field_tag :department, params[:department], placeholder: "Département"%>
-    <%= submit_tag 'Search', name: nil %>
-  <% end %>
-
-  <%= form_tag candidates_path, method: :get, remote: true do %>
     <%= text_field_tag :status, params[:status], placeholder: "Statut"%>
     <%= submit_tag 'Search', name: nil %>
   <% end %>

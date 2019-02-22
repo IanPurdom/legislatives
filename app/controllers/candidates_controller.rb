@@ -5,7 +5,8 @@ class CandidatesController < ApplicationController
     if !params[:query] && !params[:department] && !params[:status]
       @candidates = Candidate.all
     else
-      @search_candidates = Candidate.all
+    raise
+      @search_candidates = Candidate.all unless params[:query]
       @search_candidates = Candidate.global_search(params[:query]) if params[:query]
       @search_candidates = @search_candidates.where(department: Department.find_by(code: params[:department])) if params[:department]
       @search_candidates = @search_candidates.where(status: Status.find_by(code: params[:status])) if params[:status]
