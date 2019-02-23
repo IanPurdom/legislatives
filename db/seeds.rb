@@ -15,6 +15,7 @@ Status.destroy_all
 Election.destroy_all
 User.destroy_all
 Role.destroy_all
+Department.destroy_all
 
 
 puts 'create election'
@@ -48,6 +49,12 @@ puts 'create roles...'
     puts "Role #{code} created"
   end
 
+puts 'create departments...'
+
+YAML.load(open('db/departments.yml').read).each_slice(2).to_a.each do |dep|
+  Department.create!(name: dep.first, code: dep.last)
+  puts "#{dep.first}-#{dep.last} created"
+end
 
 puts 'create users...'
 
@@ -55,11 +62,15 @@ seeds[:users].each do |number, value|
   first_name = value['first_name']
   last_name = value['last_name']
   email = value['email']
+  department = Department.find_by(code: value['department'])
   role = Role.find_by(code: value['role'])
   password = value['password']
   password_confirmation = value['password_confirmation']
-  User.create!(first_name: first_name, last_name: last_name, email: email, role_id: role.id, password: password, password_confirmation: password_confirmation)
-  puts "User #{first_name} #{last_name} created"
+  User.create!(first_name: first_name, last_name: last_name, 
+                email: email, department_id: department.id, 
+                role_id: role.id, password: password, 
+                password_confirmation: password_confirmation)
+  puts "#{first_name}-#{last_name} created"
 end
 
 puts 'create candidates...'
@@ -72,10 +83,10 @@ seeds[:candidates].each do |number, value|
   district = value['district']
   profession = value['profession']
   mandate = value['mandate']
-  secretary = User.find_by(last_name: value['secretary'])
+  department = Department.find_by(code: value['department'])
   Candidate.create!(user_id: user.id, status_id: status.id, election_id: election.id, 
                     address: address, district: district, profession: profession, 
-                    mandate: mandate, secretary_id: secretary.id)
+                    mandate: mandate, department_id: department.id)
   puts "Candidate #{user.first_name} #{user.last_name} created"
 end
 
@@ -91,4 +102,9 @@ seeds[:deputies].each do |number, value|
   deputy = Deputy.create!(candidate_id: candidate.id, first_name: first_name, last_name: last_name, profession: profession, email: email, address: address )
   puts "Deputy #{deputy.first_name} #{deputy.last_name} created"
 end
+
+
+
+
+
 

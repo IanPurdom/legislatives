@@ -4,8 +4,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
 
+    <%= resource.errors.full_messages %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
@@ -17,21 +17,20 @@
                 required: true,
                 autofocus: true ,
                 input_html: { autocomplete: "last_name" }%>
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false
-                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :email,
+                required: true,
+                autofocus: true ,
+                input_html: { autocomplete: "email" }%>
     <%= f.input :role_id, 
                 :label => 'Role', 
-                collection: Role.all.collect{|r| [role.code, role.id]} %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" },
-                required: true %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+                collection: Role.all.collect{|r| [r.description, r.id]} %>
+    <%= f.input :password,
                 required: true,
-                input_html: { autocomplete: "current-password" } %>
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "new-password" } %>
   </div>
 
   <div class="form-actions">

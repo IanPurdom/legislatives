@@ -1,9 +1,23 @@
 class CandidatesController < ApplicationController
   before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster, :validate, :reject, :attach, :remove_attachment, :remove_kits_attachment, :remove_documents_attachment]
 
-  def index 
-    @candidates = policy_scope(Candidate)
-    @statuses_ids = @candidates.distinct.pluck(:status_id)
+  def index
+  
+    if params[:query].nil? && params[:department].nil? && params[:status].nil?
+      @candidates = Candidate.all
+      respond_to do |format|
+        format.html {render}
+      end
+    else
+      @candidates = Candidate.all if params[:query].blank?
+      @candidates = Candidate.global_search(params[:query]) unless params[:query].blank?
+      @candidates = @candidates.where(department: Department.find_by(code: params[:department])) unless params[:department].blank?
+      @candidates = @candidates.where(status: Status.find_by(code: params[:status])) unless params[:status].blank?
+      respond_to do |format|
+        format.js { render partial: 'search-results'}
+        format.html {render}
+      end
+    end
   end
 
   def show
@@ -11,14 +25,13 @@ class CandidatesController < ApplicationController
   end
 
   def new
-    @candidate = Candidate.new
-    @deputy = Deputy.new
   end
 
   def create
     @candidate = Candidate.new(candidate_params)
     @candidate.user = current_user
     @candidate.election = Election.find_by(name:'Législatives')
+    @candidate.picture.attach(candidate_params[:picture]) unless candidate_params[:picture].nil?
     authorize @candidate
     if @candidate.save
       unless deputy_params[:last_name].empty?
@@ -28,7 +41,8 @@ class CandidatesController < ApplicationController
       end
       redirect_to candidate_path(@candidate)
     else
-     render :new 
+      flash[:alert] = "#{@candidate.errors.full_messages.to_sentence}"
+      redirect_to new_candidate_path
     end
   end
 
@@ -38,6 +52,7 @@ class CandidatesController < ApplicationController
   def update
     authorize @candidate
     @candidate.update(candidate_params)
+    @candidate.picture.attach(candidate_params[:picture]) unless candidate_params[:picture].nil?
     if @candidate.save
       @candidate.deputy.update(deputy_params)
       if @candidate.deputy.save
@@ -100,7 +115,7 @@ class CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :attachment, :doc_type ,documents: [], kits: [])
+    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :picture, :department, :status, :attachment, :doc_type ,documents: [], kits: [], query: [])
   end
 
   def deputy_params
@@ -110,5 +125,6 @@ class CandidatesController < ApplicationController
   def user_params
     params.require(:candidate).require(:user).permit(:first_name, :last_name, :email)
   end
+
 
 end

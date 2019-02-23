@@ -1,12 +1,10 @@
 <div class="f-new">
   <ul class="new-form">
-    <%= simple_form_for @candidate do |f| %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :email %>
+    <%= simple_form_for Candidate.new do |f| %>
+      <%= f.file_field :picture %>
       <%= f.input :district %>
       <%= f.input :profession %>
-      <%= f.simple_fields_for @deputy do |dep| %>
+      <%= f.simple_fields_for Deputy.new do |dep| %>
       <div>Suppléant:</div>
         <%= dep.input :first_name %>
         <%= dep.input :last_name %>

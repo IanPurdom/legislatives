@@ -11,7 +11,12 @@ Rails.application.routes.draw do
 
   # get 'candidates/destroy'
 
-  devise_for :users
+  devise_scope :user do
+    get "/sign_in" => "devise/sessions#new" # custom path to login/sign_in
+    get "/sign_up" => "devise/registrations#new", as: "new_user_registration" # custom path to sign_up/registration
+  end
+
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :candidates do 
     get 'poster', on: :member
     get 'validate', on: :member

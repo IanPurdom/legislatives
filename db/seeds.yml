@@ -31,7 +31,7 @@
     district: 4ier circonscription des Essonnes
     status: 'OPEN'
     election: 'Législatives'
-    secretary: 'Monnier'
+    department: '1'
   :candidat_2:
     user: 'Duchemin'
     address: '10 boulevard National, Nanterre, 92000'
@@ -40,7 +40,7 @@
     district: 4ier circonscription du Vaucluse'
     status: 'OPEN'
     election: 'Législatives'
-    secretary: 'Monnier'
+    department: '1'
   :candidat_3:
     user: 'Michoux'
     address: '10 boulevard National, Nanterre, 92000'
@@ -49,7 +49,7 @@
     district: 4ier circonscription des Yvellines
     status: 'OPEN'
     election: 'Législatives'
-    secretary: 'Diaz'
+    department: '2'
   :candidat_4:
     user: 'Marton'
     address: '10 boulevard National, Nanterre, 92000'
@@ -58,19 +58,21 @@
     district: 4ier circonscription du Var'
     status: 'OPEN'
     election: 'Législatives'
-    secretary: 'Diaz'
+    department: '2'
 :users:
   :user_1:
     first_name: 'Jean-Claude'
     last_name: 'Duss'
     email: 'jc@mail.com'
     role: 'CAN'
+    department: "1"
     password: '123456'
     password_confirmation: '123456'
   :user_6:
     first_name: 'Claude'
     last_name: 'Duchemin'
     email: 'claude@mail.com'
+    department: "1"
     role: 'CAN'
     password: '123456'
     password_confirmation: '123456'
@@ -78,6 +80,7 @@
     first_name: 'Caroline'
     last_name: 'Michoux'
     email: 'Mich@mail.com'
+    department: "2"
     role: 'CAN'
     password: '123456'
     password_confirmation: '123456'
@@ -85,6 +88,7 @@
     first_name: 'François'
     last_name: 'Marton'
     email: 'marton@mail.com'
+    department: "2"
     role: 'CAN'
     password: '123456'
     password_confirmation: '123456'
@@ -92,6 +96,7 @@
     first_name: 'Thibaut'
     last_name: 'Monnier'
     email: 'thib@mail.com'
+    department: "1"
     role: 'SD'
     password: '123456'
     password_confirmation: '123456'
@@ -99,6 +104,7 @@
     first_name: 'Edwige'
     last_name: 'Diaz'
     email: 'diaz@mail.com'
+    department: "2"
     role: 'SD'
     password: '123456'
     password_confirmation: '123456'
@@ -107,12 +113,14 @@
     last_name: 'Nikolic'
     email: 'Aleks@mail.com'
     role: 'DNF'
+    department: '0'
     password: '123456'
     password_confirmation: '123456'
   :user_5:
     first_name: 'Charles'
     last_name: 'Hourcade'
     email: 'Charles@mail.com'
+    department: '0'
     role: 'COM'
     password: '123456'
     password_confirmation: '123456'
