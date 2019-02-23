@@ -35,6 +35,11 @@
 	display: flex;
 }
 
+.fa-arrow-left {
+	font-size: 4vh;
+    margin-left: -4vh;
+}
+
 @media (max-width: 544px) {
 	
 	.candidate-status {

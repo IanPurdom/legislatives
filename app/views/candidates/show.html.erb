@@ -1,8 +1,10 @@
-
 <div class="container">
   <div class="row">
     <div class="col-12">
       <div class='cand-wrapper'>
+        <%= link_to candidates_path(:query => params[:query], :department => params[:department], :status => params[:status]) do %>
+        <i class="fas fa-arrow-left"></i>
+        <% end %>
         <div class="candidate-status"><%= @candidate.status.description %>
         </div>
         <% if !@candidate.picture.attachment.nil? %>

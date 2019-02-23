@@ -1,5 +1,5 @@
 <div class="candidate-wrapper">
-  <% @search_candidates.each do |candidate| %>
+  <% @candidates.each do |candidate| %>
   <div class="candidate-col">
     <div class="candidate-card">
       <% if candidate.picture.attachment.nil? %>
@@ -19,9 +19,10 @@
           <span><%= candidate.department.name %>-<%= candidate.department.code %></span>
         </span>
       </div>
-    <%= link_to "", candidate_path(candidate), class:"candidate-card-link" %>
+    <%= link_to "", candidate_path(candidate, :query => params[:query], :department => params[:department], :status => params[:status]), class:"candidate-card-link"%>
     </div>
   </div>
   <% end %>
 </div>
 
+ 

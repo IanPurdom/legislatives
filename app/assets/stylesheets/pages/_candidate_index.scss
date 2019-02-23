@@ -1,22 +1,77 @@
 
+/*.candidates-panel {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+*/
+
+/*.candidate-col {
+    flex: 0 0 220px;
+    padding: 0 5px;
+} */
+
+
+
+@media (max-width: 443px) {
+    .candidate-col {
+        flex: 0 0 290px;
+        padding: 0 5px;
+    }
+
+}
+
+@media (min-width: 444px) {
+    .candidate-col {
+        flex: 0 0 220px;
+        padding: 0 5px;
+    }
+
+}
+
+@media (max-width: 659px) {
+    .form-tag {
+        display: flex;
+        flex-direction: column;
+    }
+    .candidate-wrapper {
+        align-content: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+#pg-search {
+        flex: 1 1 auto;
+}
+
+.form-control_inline {
+    margin: 1vh;
+}
+
+.form-tag {
+    display: flex;
+    margin: 1vh;
+}
+
+.placeholder {
+    margin: 0.5vh;
+    color: black;
+}
+
+.placeholder:not(:focus) {
+font-style:italic;
+}
+
+
 .candidate-wrapper {
 	align-content: flex-start;
 	display: flex;
 	flex-wrap: wrap;
+    margin:1vh;
 }
-
-.candidate-col {
-	flex: 0 0 220px;
-	padding: 0 5px;
-} 
-
-/*@media (min-width: 544px) {
-	.candidate-col {
-		flex: 0 0 220px;
-		padding: 0 5px;
-	}
-}*/
-
 .candidate-card {
     height: 287px;
     margin: 5px 0;

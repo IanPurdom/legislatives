@@ -1,4 +1,3 @@
-
 function changeColor() {
   $('.status').each(function(i, obj) {
 	  if (obj.innerHTML == "OPEN") 
@@ -23,11 +22,10 @@ function changeColor() {
 
 function changeColorShow() {
   $('.candidate-status').each(function(i, obj) {
-	  if (obj.innerHTML == "En cours de création") 
+	  if (obj.innerText == "En cours de création") 
 		{obj.classList.add("green");}
 	  else if (obj.innerText == "En attente de validation SD")
-  		{console.log("cococu")
-	  	obj.classList.add("orange");}
+  		{obj.classList.add("orange");}
 	  else if (obj.innerText == "En attente de validation DNF")
 	  	{obj.classList.add("yellow");}
 	  else if (obj.innerText == "En attente de validation Pôle Com.")
