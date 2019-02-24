@@ -1,27 +1,27 @@
 :statuses:
   :status_1:
     code: OPEN
-    description: 'En cours de création'
+    description: 'Ouverte'
     next_action: 'Soumettre au SD'  
   :status_2:
     code: PENDING_SD
-    description: 'En attente de validation SD'
+    description: 'Validation SD'
     next_action: 'Soumettre à DNF'  
   :status_3:
     code: PENDING_DNF
-    description: 'En attente de validation DNF'
+    description: 'Validation DNF'
     next_action: 'Soumettre pôle COM'
   :status_4:
     code: PENDING_COM
-    description: 'En attente de validation Pôle Com.'
+    description: 'Validation Com.'
     next_action: 'Soumettre au candidat'
   :status_5:
     code: PENDING_CANDIDATE
-    description: 'En attende de validation finale du candidat'
+    description: 'Validation candidat'
     next_action: 'Bon à tirer'
   :status_6:
     code: CLOSE
-    description: 'Candidature close'
+    description: 'Bon à tirer'
 :candidates:
   :candidat_1:
     user: 'Duss'

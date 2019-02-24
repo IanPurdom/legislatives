@@ -8,9 +8,9 @@
 <div class= "candidates-panel">
   <div class="form-control-inline">
   <%= form_tag candidates_path, method: :get, remote: true, class:"form-tag" do %>
-    <%= text_field_tag :query, params[:query], placeholder: "Prénom, nom, profession ...", class:"placeholder", id:"pg-search" %>
-    <%= text_field_tag :department, params[:department], placeholder: "Département", class:"placeholder"%>
-    <%= text_field_tag :status, params[:status], placeholder: "Statut", class:"placeholder"%>
+    <%= text_field_tag :query, params[:query], placeholder: "Prénom, nom, profession, mandat ...", class:'placeholder', id:"pg-search" %>
+    <%= text_field_tag :department, params[:department], placeholder: "Département", id: 'department-tag', class:'placeholder'%>
+    <%= select_tag :status, options_for_select(Status.all.collect{ |s| [s.description, s.id]}, params[:status]), :prompt => 'Statut', :onchange => "this.form.submit();", id: 'select-tag', class:'placeholder'%>
     <%= submit_tag "" %>
   <% end %>
   </div>
@@ -36,12 +36,16 @@
               <span><%= candidate.department.name %>-<%= candidate.department.code %></span>
             </span>
           </div>
-        <%= link_to "", candidate_path(candidate), class:"candidate-card-link" %>
+        <%= link_to "", candidate_path(candidate, :query => params[:query], :department => params[:department], :status => params[:status]), class:"candidate-card-link" %>
         </div>
       </div>
       <% end %>
     </div>
   </div>
 </div>
-
+<div id="departments" class="hidden" data-departments="<%= Department.all.map {|d| d.name} %>"> 
+</div>
 <%= javascript_pack_tag 'tuning' %>
+<%= javascript_pack_tag 'autocomplete' %>
+
+

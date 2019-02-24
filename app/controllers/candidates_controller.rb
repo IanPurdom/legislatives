@@ -2,7 +2,6 @@ class CandidatesController < ApplicationController
   before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster, :validate, :reject, :attach, :remove_attachment, :remove_kits_attachment, :remove_documents_attachment]
 
   def index
-  
     if params[:query].nil? && params[:department].nil? && params[:status].nil?
       @candidates = Candidate.all
       respond_to do |format|
@@ -11,11 +10,11 @@ class CandidatesController < ApplicationController
     else
       @candidates = Candidate.all if params[:query].blank?
       @candidates = Candidate.global_search(params[:query]) unless params[:query].blank?
-      @candidates = @candidates.where(department: Department.find_by(code: params[:department])) unless params[:department].blank?
-      @candidates = @candidates.where(status: Status.find_by(code: params[:status])) unless params[:status].blank?
+      @candidates = @candidates.where(department: Department.find_by(name: params[:department])) unless params[:department].blank?
+      @candidates = @candidates.where(status: Status.find(params[:status])) unless params[:status].blank?
       respond_to do |format|
-        format.js { render partial: 'search-results'}
-        format.html {render}
+        format.js { render partial: 'search-results' }
+        format.html { render }
       end
     end
   end
