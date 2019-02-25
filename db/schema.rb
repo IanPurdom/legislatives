@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_24_194204) do
+ActiveRecord::Schema.define(version: 2019_02_25_091941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2019_02_24_194204) do
 
   create_table "candidates", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "district"
     t.string "profession"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,8 +58,8 @@ ActiveRecord::Schema.define(version: 2019_02_24_194204) do
     t.bigint "status_id"
     t.string "mandate"
     t.string "address"
-    t.bigint "department_id"
-    t.index ["department_id"], name: "index_candidates_on_department_id"
+    t.bigint "district_id"
+    t.index ["district_id"], name: "index_candidates_on_district_id"
     t.index ["election_id"], name: "index_candidates_on_election_id"
     t.index ["status_id"], name: "index_candidates_on_status_id"
     t.index ["user_id"], name: "index_candidates_on_user_id"
@@ -84,6 +83,17 @@ ActiveRecord::Schema.define(version: 2019_02_24_194204) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["candidate_id"], name: "index_deputies_on_candidate_id"
+  end
+
+  create_table "districts", force: :cascade do |t|
+    t.string "code"
+    t.bigint "department_id"
+    t.string "num_district"
+    t.string "region"
+    t.string "code_region"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_districts_on_department_id"
   end
 
   create_table "elections", force: :cascade do |t|
@@ -130,11 +140,12 @@ ActiveRecord::Schema.define(version: 2019_02_24_194204) do
   add_foreign_key "audits", "candidates"
   add_foreign_key "audits", "statuses"
   add_foreign_key "audits", "users"
-  add_foreign_key "candidates", "departments"
+  add_foreign_key "candidates", "districts"
   add_foreign_key "candidates", "elections"
   add_foreign_key "candidates", "statuses"
   add_foreign_key "candidates", "users"
   add_foreign_key "deputies", "candidates"
+  add_foreign_key "districts", "departments"
   add_foreign_key "users", "departments"
   add_foreign_key "users", "roles"
 end

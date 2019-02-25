@@ -1,35 +1,36 @@
 <br>
-<br> 
+<br>
 <div class="col-sm-offset-4 col-sm-4">
-    <div class="form-inputs">
+  <div class='form-dept'><strong>Département:</strong></div> 
+  <div class='form-dept input-dept form-control'><%= current_user.department.name_code %></div> 
+  <div class="form-inputs">
     <%= simple_form_for @candidate do |f| %>
-      <%= f.simple_fields_for @candidate.user do |user| %>
-        <%= user.input :first_name %>
-        <%= user.input :last_name %>
-      <% end %>
-      <%= f.file_field :picture %>
-      <%= f.input :district %>
+      <%= f.input :district_id,
+          :label => 'Circonscription',
+          collection: @districts.collect {|d| [d.num_district, d.id]}.sort %>
       <%= f.input :profession %>
-      <% if !@candidate.deputy.nil? %>
-        <%= f.simple_fields_for @candidate.deputy do |dep| %>
+      <div>Photo: </div> 
+      <%= f.file_field :picture %>
+      <br>
+    <% if @candidate.deputy.nil? %>
         <div>Suppléant:</div>
-          <%= dep.input :first_name %>
-          <%= dep.input :last_name %>
+      <%= f.simple_fields_for Deputy.new do |dep| %>
+          <%= dep.input :first_name, :label => 'Prénom' %>
+          <%= dep.input :last_name, :label => 'Nom' %>
           <%= dep.input :profession %>
           <%= dep.input :email %>
-          <%= dep.input :address %>
+          <%= dep.input :address, :label => 'Adresse' %>
         <% end %>
       <% else %>
-        <%= f.simple_fields_for Deputy.new do |dep| %>
+        <%= f.simple_fields_for @candidate.deputy do |dep| %>
         <div>Suppléant:</div>
-          <%= dep.input :first_name %>
-          <%= dep.input :last_name %>
+          <%= dep.input :first_name, :label => 'Prénom'  %>
+          <%= dep.input :last_name, :label => 'Nom'  %>
           <%= dep.input :profession %>
           <%= dep.input :email %>
-          <%= dep.input :address %>
+          <%= dep.input :address, :label => 'Adresse' %>
         <% end %>
       <% end %>
-      <%= f.file_field :documents, multiple: true %>
       <%= f.submit 'Valider' %>
     <% end %>
   </div>

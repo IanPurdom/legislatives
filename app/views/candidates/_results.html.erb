@@ -13,12 +13,12 @@
         </div>
         <div class="candidate-macaron status"><%= candidate.status.code %></div>
         <span></span>
-      <div class="candidate-card-content">
-        <span>
-          <span class="circo"><%= candidate.district %></span><br>
-          <span><%= candidate.department.name %>-<%= candidate.department.code %></span>
-        </span>
-      </div>
+        <div class="candidate-card-content">
+          <span>
+            <span class="circo"><%= candidate.district.num_district %>ie circonscription</span><br>
+            <span><%= candidate.district.department.name_code %></span>
+          </span>
+        </div>
     <%= link_to "", candidate_path(candidate, :query => params[:query], :department => params[:department], :status => params[:status]), class:"candidate-card-link"%>
     </div>
   </div>

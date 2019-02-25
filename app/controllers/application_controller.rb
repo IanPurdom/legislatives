@@ -6,8 +6,10 @@ class ApplicationController < ActionController::Base
   
   protected
   def after_sign_in_path_for(resource)
-    if resource.role.code == 'CAN' && !resource.candidate.nil?
-    request.env['omniauth.origin'] || stored_location_for(resource) || candidate_path(resource.candidate)
+    if resource.role.code == 'CAN' && resource.candidate.nil?
+      request.env['omniauth.origin'] || stored_location_for(resource) || new_candidate_path(resource.candidate)
+    elsif resource.role.code == 'CAN' && !resource.candidate.nil?
+      request.env['omniauth.origin'] || stored_location_for(resource) || candidate_path(resource.candidate)
     else 
       request.env['omniauth.origin'] || stored_location_for(resource) || candidates_path
     end  

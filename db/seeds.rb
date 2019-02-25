@@ -15,8 +15,8 @@ Status.destroy_all
 Election.destroy_all
 User.destroy_all
 Role.destroy_all
+District.destroy_all
 Department.destroy_all
-
 
 puts 'create election'
 
@@ -56,6 +56,19 @@ YAML.load(open('db/departments.yml').read).each_slice(2).to_a.each do |dep|
   puts "#{dep.first}-#{dep.last} created"
 end
 
+puts 'create districts...'
+
+circo = YAML.load(open('db/circo.json').read)
+circo["features"].each do |c|
+  code = c['properties']['ID']
+  code_dept = c['properties']['code_dpt']
+  num_circ = c['properties']['num_circ']
+  nom_reg = c['properties']['nom_reg']
+  code_reg = c['properties']['code_reg']
+  District.create!(code: code, department: Department.find_by(code: code_dept), num_district: num_circ, region: nom_reg, code_region: code_reg)
+  puts "distrcit #{code} from #{code_dept} created"
+end
+
 puts 'create users...'
 
 seeds[:users].each do |number, value|
@@ -78,15 +91,15 @@ puts 'create candidates...'
 seeds[:candidates].each do |number, value|
   user = User.find_by(last_name: value['user'])
   status = Status.find_by(code: value['status'])
+  department = Department.find_by(code: value['department'])
+  district = District.find_by(num_district: value['district'], department: department)
+  profession = value['profession']
   election = Election.find_by(name: 'Législatives')
   address = value['address']
-  district = value['district']
-  profession = value['profession']
   mandate = value['mandate']
-  department = Department.find_by(code: value['department'])
   Candidate.create!(user_id: user.id, status_id: status.id, election_id: election.id, 
-                    address: address, district: district, profession: profession, 
-                    mandate: mandate, department_id: department.id)
+                    address: address, district_id: district.id, profession: profession, 
+                    mandate: mandate)
   puts "Candidate #{user.first_name} #{user.last_name} created"
 end
 
@@ -102,9 +115,3 @@ seeds[:deputies].each do |number, value|
   deputy = Deputy.create!(candidate_id: candidate.id, first_name: first_name, last_name: last_name, profession: profession, email: email, address: address )
   puts "Deputy #{deputy.first_name} #{deputy.last_name} created"
 end
-
-
-
-
-
-

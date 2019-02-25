@@ -23,7 +23,7 @@
                     collection: Role.all.collect{|r| [r.description, r.id]} %>
         <%= f.input :department_id, 
                     :label => 'Département', 
-                    collection: Department.all.collect{|r| [r.name, r.id]} %>
+                    collection: Department.all.collect{|r| [r.name_code, r.id]} %>
         <%= f.input :password,
                     :label => 'Mot de passe', 
                     required: true,

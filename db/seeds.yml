@@ -28,51 +28,51 @@
     address: '10 boulevard National, Nanterre, 92000'
     profession: 'Medecin'
     mandate: 'Conseiller régional'
-    district: 4ier circonscription des Essonnes
+    district: '1'
     status: 'OPEN'
     election: 'Législatives'
-    department: '1'
+    department: '01'
   :candidat_2:
     user: 'Duchemin'
     address: '10 boulevard National, Nanterre, 92000'
     profession: 'Consultant'
     mandate: 'Conseiller Departemental'
-    district: 4ier circonscription du Vaucluse'
+    district: '2'
     status: 'OPEN'
     election: 'Législatives'
-    department: '1'
+    department: '01'
   :candidat_3:
     user: 'Michoux'
     address: '10 boulevard National, Nanterre, 92000'
     profession: 'Commerçante'
     mandate: 'Conseiller régional'
-    district: 4ier circonscription des Yvellines
+    district: '1'
     status: 'OPEN'
     election: 'Législatives'
-    department: '2'
+    department: '02'
   :candidat_4:
     user: 'Marton'
     address: '10 boulevard National, Nanterre, 92000'
     profession: 'Informaticien'
     mandate: 'Conseiller Departemental'
-    district: 4ier circonscription du Var'
+    district: '2'
     status: 'OPEN'
     election: 'Législatives'
-    department: '2'
+    department: '02'
 :users:
   :user_1:
     first_name: 'Jean-Claude'
     last_name: 'Duss'
     email: 'jc@mail.com'
     role: 'CAN'
-    department: "1"
+    department: "01"
     password: '123456'
     password_confirmation: '123456'
   :user_6:
     first_name: 'Claude'
     last_name: 'Duchemin'
     email: 'claude@mail.com'
-    department: "1"
+    department: "01"
     role: 'CAN'
     password: '123456'
     password_confirmation: '123456'
@@ -80,7 +80,7 @@
     first_name: 'Caroline'
     last_name: 'Michoux'
     email: 'Mich@mail.com'
-    department: "2"
+    department: "02"
     role: 'CAN'
     password: '123456'
     password_confirmation: '123456'
@@ -88,7 +88,7 @@
     first_name: 'François'
     last_name: 'Marton'
     email: 'marton@mail.com'
-    department: "2"
+    department: "02"
     role: 'CAN'
     password: '123456'
     password_confirmation: '123456'
@@ -96,7 +96,7 @@
     first_name: 'Thibaut'
     last_name: 'Monnier'
     email: 'thib@mail.com'
-    department: "1"
+    department: "01"
     role: 'SD'
     password: '123456'
     password_confirmation: '123456'
@@ -104,7 +104,7 @@
     first_name: 'Edwige'
     last_name: 'Diaz'
     email: 'diaz@mail.com'
-    department: "2"
+    department: "02"
     role: 'SD'
     password: '123456'
     password_confirmation: '123456'

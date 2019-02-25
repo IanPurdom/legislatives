@@ -2,7 +2,9 @@
   <div class="form-control-inline">
   <%= form_tag candidates_path, method: :get, remote: true, class:"form-tag" do %>
     <%= text_field_tag :query, params[:query], placeholder: "Prénom, nom, profession, mandat ...", class:'placeholder', id:"pg-search" %>
-    <%= text_field_tag :department, params[:department], placeholder: "Département", id: 'department-tag', class:'placeholder'%>
+    <% unless ["CAN", "SD"].include? current_user.role.code  %>
+      <%= text_field_tag :department, params[:department], placeholder: "Département", id: 'department-tag', class:'placeholder'%>
+    <% end %>
     <%= select_tag :status, options_for_select(Status.all.collect{ |s| [s.description, s.id]}, params[:status]), :prompt => 'Statut', :onchange => "this.form.submit();", id: 'select-tag', class:'placeholder'%>
     <%= submit_tag "" %>
   <% end %>
@@ -25,8 +27,8 @@
             <span></span>
           <div class="candidate-card-content">
             <span>
-              <span class="circo"><%= candidate.district %></span><br>
-              <span><%= candidate.department.name %>-<%= candidate.department.code %></span>
+              <span class="circo"><%= candidate.district.num_district %>ie circonscription</span><br>
+              <span><%= candidate.district.department.name_code %></span>
             </span>
           </div>
         <%= link_to "", candidate_path(candidate, :query => params[:query], :department => params[:department], :status => params[:status]), class:"candidate-card-link" %>

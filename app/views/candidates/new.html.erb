@@ -1,18 +1,27 @@
 <br>
-<br> 
+<br>
 <div class="col-sm-offset-4 col-sm-4">
+  <div>
+    <div class='form-dept'><strong>Département:</strong></div> 
+    <div class='form-dept input-dept form-control'><%= current_user.department.name_code %></div> 
+  </div>
     <div class="form-inputs">
     <%= simple_form_for Candidate.new do |f| %>
-      <%= f.file_field :picture %>
-      <%= f.input :district %>
+      <%= f.input :district_id,
+          :label => 'Circonscription',
+          collection: @districts.collect {|d| [d.num_district, d.id]}.sort %>
       <%= f.input :profession %>
-      <%= f.simple_fields_for Deputy.new do |dep| %>
+      <div>Photo: </div> 
+      <%= f.file_field :picture %>
+      <br>
       <div>Suppléant:</div>
-        <%= dep.input :first_name %>
-        <%= dep.input :last_name %>
+      <br>
+      <%= f.simple_fields_for Deputy.new do |dep| %>
+        <%= dep.input :first_name, :label => 'Prénom'  %>
+        <%= dep.input :last_name, :label => 'Nom'  %>
         <%= dep.input :profession %>
         <%= dep.input :email %>
-        <%= dep.input :address %>
+        <%= dep.input :address, :label => 'Adresse'  %>
       <% end %>
       <%= f.submit 'Valider' %>
     <% end %>

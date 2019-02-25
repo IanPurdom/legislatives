@@ -2,9 +2,12 @@
   <div class="row">
     <div class="col-12">
       <div class='cand-wrapper'>
-        <div class="district-header"><strong><%= @candidate.district %></strong></div>
-        <%= link_to candidates_path(:query => params[:query], :department => params[:department], :status => params[:status]) do %>
-        <i class="fas fa-arrow-left"></i>
+        <div class="district-header"><strong><%= @candidate.district.num_district %>ie circonscription</strong></div>
+        <div class="district-header"><strong><%= @candidate.district.department.name %></strong></div>
+        <% unless current_user.role.code == "CAN" %>
+          <%= link_to candidates_path(:query => params[:query], :department => params[:department], :status => params[:status]) do %>
+          <i class="fas fa-arrow-left"></i>
+          <% end %>
         <% end %>
         <div class="candidate-status"><%= @candidate.status.description %></div>
         <% if !@candidate.picture.attachment.nil? %>

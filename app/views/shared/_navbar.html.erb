@@ -9,10 +9,10 @@
 
     <% if user_signed_in? %>
 
-      <!-- <div><strong><%= current_user.last_name %>  <%= current_user.role.code %></strong></div> -->
-      <% if current_user.role.code != "CAN" && current_user.candidate.nil?%>
+<!-- <div><strong><%= current_user.last_name %>  <%= current_user.role.code %></strong></div>-->      
+    <% if current_user.candidate.nil?%>
         <%= link_to 'Ma candidature', new_candidate_path %>  
-      <% elsif current_user.role.code != "CAN" && !current_user.candidate.nil?%>  
+      <% elsif !current_user.candidate.nil?%>  
         <%= link_to 'Ma candidature', candidate_path(current_user.candidate)%>  
       <% end %>
 
