@@ -4,7 +4,7 @@ class CandidatePolicy < ApplicationPolicy
       if user.role.code == 'CAN'
         scope.where(user: user)
       elsif user.role.code == 'SD'
-        scope.where(department: user.department)
+        scope.where(district: District.where(department: user.department))
       else
         scope.all
       end
@@ -12,7 +12,7 @@ class CandidatePolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user || record.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
+    record.user == user || record.district.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
   end
 
   def create?
@@ -21,9 +21,9 @@ class CandidatePolicy < ApplicationPolicy
 
   def update?
     if record.status.code == 'OPEN'
-      record.user == user || record.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
+      record.user == user || record.district.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
     elsif record.status.code  == 'PENDING_SD'
-      record.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
+      record.district.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
     elsif record.status.code  == 'PENDING_DNF' 
       user.role.code == 'DNF' || user.role.code == 'COM'
     elsif record.status.code  == 'PENDING_COM'
@@ -34,14 +34,14 @@ class CandidatePolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user == user || record.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
+    record.user == user || record.district.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
   end
 
   def validate?
     if record.status.code == 'OPEN'
-      record.user == user || record.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
+      record.user == user || record.district.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
     elsif record.status.code  == 'PENDING_SD'
-      record.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
+      record.district.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
     elsif record.status.code  == 'PENDING_DNF' 
       user.role.code == 'DNF' || user.role.code == 'COM'
     elsif record.status.code  == 'PENDING_COM'
@@ -53,9 +53,9 @@ class CandidatePolicy < ApplicationPolicy
 
   def reject?
     if record.status.code == 'OPEN'
-      record.user == user || record.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
+      record.user == user || record.district.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
     elsif record.status.code  == 'PENDING_SD'
-      record.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
+      record.district.department == user.department || user.role.code == 'DNF' || user.role.code == 'COM'
     elsif record.status.code  == 'PENDING_DNF' 
       user.role.code == 'DNF' || user.role.code == 'COM'
     elsif record.status.code  == 'PENDING_COM'

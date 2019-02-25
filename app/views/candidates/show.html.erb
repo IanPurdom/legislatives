@@ -2,41 +2,40 @@
   <div class="row">
     <div class="col-12">
       <div class='cand-wrapper'>
-        <%= link_to candidates_path(:query => params[:query], :department => params[:department], :status => params[:status]) do %>
-        <i class="fas fa-arrow-left"></i>
+        <div class="district-header"><strong><%= @candidate.district.num_district %>ie circonscription</strong></div>
+        <div class="district-header"><strong><%= @candidate.district.department.name %></strong></div>
+        <% unless current_user.role.code == "CAN" %>
+          <%= link_to candidates_path(:query => params[:query], :department => params[:department], :status => params[:status]) do %>
+          <i class="fas fa-arrow-left"></i>
+          <% end %>
         <% end %>
-        <div class="candidate-status"><%= @candidate.status.description %>
-        </div>
+        <div class="candidate-status"><%= @candidate.status.description %></div>
         <% if !@candidate.picture.attachment.nil? %>
           <%= image_tag @candidate.picture, class:"candidate-img" %>
         <% else %>
           <%= image_tag "empty_photo.jpg", class:"candidate-img" %>
         <% end %>
         <div class="text-cand" >
-          <div><strong>Election <%= @candidate.election.name %> du <%= @candidate.election.election_date %></strong></div>
-          <div><strong><%= @candidate.district %></strong></div>
-          <div>Prénom: <%= @candidate.user.first_name %> <%= @candidate.user.last_name %></div>
+          <div class="candidate"><strong><%= @candidate.user.first_name %> <%= @candidate.user.last_name %></strong></div>
           <div>Profession: <%= @candidate.profession %></div>
           <div>Courriel: <%= @candidate.user.email %></div>
           <div>Mandat: <%= @candidate.mandate %></div>
-          <div><strong>Suppléant:</strong></div>
           <% unless @candidate.deputy.nil? %>
-            <div>Prénom: <%= @candidate.deputy.first_name %> <%= @candidate.deputy.last_name %></div>
-            <div>Nom: <%= @candidate.deputy.profession %></div>
+          <div class='deputy'>Suppléant: <strong><%= @candidate.deputy.first_name %> <%= @candidate.deputy.last_name %></strong></div>
+            <div>profession: <%= @candidate.deputy.profession %></div>
           <% end %>
-       </div>
-      <div class="files">
-        <% if current_user.role.code == 'COM' && @candidate.status.order > 3%>
-          <strong>Fichiers Indesign:</strong></br>
-
-          <% if @candidate.documents.attached? %>
-            <% @candidate.documents.each do |document| %>
-              <%= link_to document.filename, document, target: '_blank' %>
-              <% if current_user.role.code == 'COM'%>
-                <%= link_to '', remove_attachment_candidate_path(@candidate, attachment: document.id, doc_type: 'documents'), method: :post, class: "fas fa-trash-alt"%> <br>
-              <% end %>   
+        </div>
+        <div class="files">
+          <% if current_user.role.code == 'COM' && @candidate.status.order > 3%>
+            <strong>Fichiers Indesign:</strong></br>
+            <% if @candidate.documents.attached? %>
+              <% @candidate.documents.each do |document| %>
+                <%= link_to document.filename, document, target: '_blank' %>
+                <% if current_user.role.code == 'COM'%>
+                  <%= link_to '', remove_attachment_candidate_path(@candidate, attachment: document.id, doc_type: 'documents'), method: :post, class: "fas fa-trash-alt"%> <br>
+                 <% end %>   
+              <% end %>
             <% end %>
-          <% end %>
           <a class="fas fa-plus-circle add-doc"> Ajouter</a>
           <div class="hidden">
             <%= simple_form_for @candidate, :url => attach_candidate_path, method: :post do |cand| %>
@@ -65,9 +64,9 @@
               <%= cand.hidden_field :doc_type, :value => 'kits' %>
               <%= cand.submit id: 'btn-input-add-kit'  %>
             <% end %>
-          </div>
-        <% end %>
-      </div>
+           </div>
+         <% end %>
+        </div>
        <div class="button">
         <% if @candidate.status.code == 'OPEN' %>
           <%= link_to "#{@candidate.status.next_action}", validate_candidate_path(@candidate), class: "btn btn-success but" %>
@@ -98,10 +97,9 @@
             </div>
           <% end  %>
         </div>
-        <% end %>
+      <% end %>
       </div>  
     </div>
   </div>
 </div>
-<%= javascript_pack_tag 'tuning' %>
 <%= javascript_pack_tag 'tuning_show' %>

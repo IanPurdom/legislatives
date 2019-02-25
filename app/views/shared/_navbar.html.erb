@@ -9,12 +9,12 @@
 
     <% if user_signed_in? %>
 
-      <h1><strong><%= current_user.last_name %>  <%= current_user.role.code %></strong></h1>
-
-      <!-- Links when logged in -->
-      <%#= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%#= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%#= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+<!-- <div><strong><%= current_user.last_name %>  <%= current_user.role.code %></strong></div>-->      
+    <% if current_user.candidate.nil?%>
+        <%= link_to 'Ma candidature', new_candidate_path %>  
+      <% elsif !current_user.candidate.nil?%>  
+        <%= link_to 'Ma candidature', candidate_path(current_user.candidate)%>  
+      <% end %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">

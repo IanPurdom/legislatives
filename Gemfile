@@ -22,6 +22,7 @@ gem 'pry', '~> 0.10.3'
 gem 'pry-nav', '~> 0.2.4'
 gem 'rubyzip', require: 'zip'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'bootsnap'
 gem 'fileutils', '~> 1.1.0'
 gem "google-cloud-storage", "~> 1.8", require: false

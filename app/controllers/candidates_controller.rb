@@ -2,20 +2,19 @@ class CandidatesController < ApplicationController
   before_action :set_candidate, only: [:show, :edit, :update, :destroy, :poster, :validate, :reject, :attach, :remove_attachment, :remove_kits_attachment, :remove_documents_attachment]
 
   def index
-  
     if params[:query].nil? && params[:department].nil? && params[:status].nil?
-      @candidates = Candidate.all
+      @candidates = policy_scope(Candidate)
       respond_to do |format|
         format.html {render}
       end
     else
-      @candidates = Candidate.all if params[:query].blank?
-      @candidates = Candidate.global_search(params[:query]) unless params[:query].blank?
-      @candidates = @candidates.where(department: Department.find_by(code: params[:department])) unless params[:department].blank?
-      @candidates = @candidates.where(status: Status.find_by(code: params[:status])) unless params[:status].blank?
+      @candidates = policy_scope(Candidate) if params[:query].blank?
+      @candidates = Candidate.global_search(params[:query]).where(district: District.where(department: current_user.department)) unless params[:query].blank?
+      @candidates = @candidates.where(department: Department.find_by(name_code: params[:department])) unless params[:department].blank?
+      @candidates = @candidates.where(status: Status.find(params[:status])) unless params[:status].blank?
       respond_to do |format|
-        format.js { render partial: 'search-results'}
-        format.html {render}
+        format.js { render partial: 'search-results' }
+        format.html { render }
       end
     end
   end
@@ -25,6 +24,7 @@ class CandidatesController < ApplicationController
   end
 
   def new
+    @districts = District.where(department: current_user.department)
   end
 
   def create
@@ -47,6 +47,7 @@ class CandidatesController < ApplicationController
   end
 
   def edit
+    @districts = District.where(department: current_user.department)
   end
 
   def update
@@ -115,7 +116,7 @@ class CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :email, :district, :profession, :picture, :department, :status, :attachment, :doc_type ,documents: [], kits: [], query: [])
+    params.require(:candidate).permit(:first_name, :last_name, :email, :district_id, :profession, :picture, :department, :status, :attachment, :doc_type ,documents: [], kits: [], query: [])
   end
 
   def deputy_params

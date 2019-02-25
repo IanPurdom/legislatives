@@ -40,6 +40,22 @@
     margin-left: -4vh;
 }
 
+.deputy {
+	margin: 4vh 0vh 1vh 0vh;
+	font-size: 3vh;
+}
+
+.district-header {
+	margin:auto;
+	font-size: 4vh;
+}
+
+.candidate {
+	font-size: 4vh;
+    margin: 1vh 0vh;
+
+}
+
 @media (max-width: 544px) {
 	
 	.candidate-status {
@@ -59,7 +75,7 @@
 	}
 
 	.text-cand {
-		margin: 5vh 0vh -1vh;
+		margin: 11vh 0vh -1vh;
 	}
 
 	.files {
@@ -95,7 +111,7 @@
 	}
 
 	.text-cand {
-		  margin: 5vh 0vh 3vh 0vh;
+		  margin: 11vh 0vh 3vh 0vh;
 	}
 
 	.files {
