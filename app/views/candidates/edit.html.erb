@@ -1,6 +1,7 @@
-<h1><%= @candidate.user.first_name %> <%= @candidate.user.last_name %></h1>
-<div class="f-new">
-  <ul class="new-form">
+<br>
+<br> 
+<div class="col-sm-offset-4 col-sm-4">
+    <div class="form-inputs">
     <%= simple_form_for @candidate do |f| %>
       <%= f.simple_fields_for @candidate.user do |user| %>
         <%= user.input :first_name %>
@@ -31,5 +32,5 @@
       <%= f.file_field :documents, multiple: true %>
       <%= f.submit 'Valider' %>
     <% end %>
-  </ul>
+  </div>
 </div>

@@ -52,7 +52,7 @@ puts 'create roles...'
 puts 'create departments...'
 
 YAML.load(open('db/departments.yml').read).each_slice(2).to_a.each do |dep|
-  Department.create!(name: dep.first, code: dep.last)
+  Department.create!(name: dep.first, code: dep.last, name_code: "#{dep.first}-#{dep.last}" )
   puts "#{dep.first}-#{dep.last} created"
 end
 

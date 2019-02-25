@@ -1,10 +1,3 @@
-<!-- <div class="container">
-<%# if current_user.role.code != "CAN" && current_user.candidate.nil?%>
-  <%#= link_to 'Créer votre candidature', new_candidate_path, class: "btn btn-primary" %>  
-<%# elsif current_user.role.code != "CAN" && !current_user.candidate.nil?%>  
-  <%#= link_to 'Modifier votre candidature', edit_candidate_path(current_user.candidate), class: "btn btn-primary" %>  
-<%# end %> -->
-
 <div class= "candidates-panel">
   <div class="form-control-inline">
   <%= form_tag candidates_path, method: :get, remote: true, class:"form-tag" do %>
@@ -43,7 +36,7 @@
     </div>
   </div>
 </div>
-<div id="departments" class="hidden" data-departments="<%= Department.all.map {|d| d.name} %>"> 
+<div id="departments" class="hidden" data-departments="<%= Department.all.map {|d| d.name_code} %>"> 
 </div>
 <%= javascript_pack_tag 'tuning' %>
 <%= javascript_pack_tag 'autocomplete' %>

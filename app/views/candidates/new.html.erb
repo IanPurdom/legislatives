@@ -1,5 +1,7 @@
-<div class="f-new">
-  <ul class="new-form">
+<br>
+<br> 
+<div class="col-sm-offset-4 col-sm-4">
+    <div class="form-inputs">
     <%= simple_form_for Candidate.new do |f| %>
       <%= f.file_field :picture %>
       <%= f.input :district %>
@@ -14,5 +16,5 @@
       <% end %>
       <%= f.submit 'Valider' %>
     <% end %>
-  </ul>
+  </div>
 </div>
