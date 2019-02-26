@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to candidates_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
+    <%#= image_tag "https://storage.googleapis.com/photos-illustration/logo-mob.png", height: 50 %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -11,14 +11,14 @@
 
 <!-- <div><strong><%= current_user.last_name %>  <%= current_user.role.code %></strong></div>-->      
     <% if current_user.candidate.nil?%>
-        <%= link_to 'Ma candidature', new_candidate_path %>  
+        <%= link_to 'Ma candidature', new_candidate_path, class:'text-nav-bar' %>  
       <% elsif !current_user.candidate.nil?%>  
-        <%= link_to 'Ma candidature', candidate_path(current_user.candidate)%>  
+        <%= link_to 'Ma candidature', candidate_path(current_user.candidate), class:'text-nav-bar'%>  
       <% end %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
-      <%= link_to destroy_user_session_path, method: :delete do %>
+      <%= link_to destroy_user_session_path, method: :delete, class:'text-nav-bar' do %>
           <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Déconnexion") %>
       <% end %>
       </div>

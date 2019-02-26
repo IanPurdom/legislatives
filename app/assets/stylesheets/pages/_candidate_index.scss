@@ -58,7 +58,6 @@
 
 #select-tag {
     background-color: white;
-    border: 0px;
     outline: 0px;
     height: 30px;
     margin: 0.6vh 0vh 0vh 0.5vh;
@@ -70,6 +69,8 @@
 .placeholder {
     margin: 0.5vh;
     color: black;
+    border: 0.1vh solid #244671;
+    border-radius: 2px;
 }
 
 .placeholder:not(:focus) {

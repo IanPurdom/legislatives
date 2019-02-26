@@ -2,19 +2,25 @@
   <div class="row">
     <div class="col-12">
       <div class='cand-wrapper'>
-        <div class="district-header"><strong><%= @candidate.district.num_district %>ie circonscription</strong></div>
-        <div class="district-header"><strong><%= @candidate.district.department.name %></strong></div>
-        <% unless current_user.role.code == "CAN" %>
-          <%= link_to candidates_path(:query => params[:query], :department => params[:department], :status => params[:status]) do %>
-          <i class="fas fa-arrow-left"></i>
+        <div class="header-candidate">
+          <% unless current_user.role.code == "CAN" %>
+            <%= link_to candidates_path(:query => params[:query], :department => params[:department], :status => params[:status]) do %>
+            <i class="fas fa-arrow-left"></i>
+            <% end %>
           <% end %>
-        <% end %>
-        <div class="candidate-status"><%= @candidate.status.description %></div>
-        <% if !@candidate.picture.attachment.nil? %>
-          <%= image_tag @candidate.picture, class:"candidate-img" %>
-        <% else %>
-          <%= image_tag "empty_photo.jpg", class:"candidate-img" %>
-        <% end %>
+          <div class="candidate-status"><%= @candidate.status.description %></div>
+        </div>
+      </div>
+        <div class='banner-candidate' style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://storage.googleapis.com/photos-illustration/AN.jpg');">
+          <div class="district-header"><strong><%= @candidate.district.num_district %>' circonscription</strong></div>
+          <div class="district-header"><strong><%= @candidate.district.department.name %></strong></div>
+          <% if !@candidate.picture.attachment.nil? %>
+            <%= image_tag @candidate.picture, class:"candidate-img" %>
+          <% else %>
+            <%= image_tag "empty_photo.jpg", class:"candidate-img" %>
+          <% end %>
+        </div>
+      <div class='cand-wrapper'>
         <div class="text-cand" >
           <div class="candidate"><strong><%= @candidate.user.first_name %> <%= @candidate.user.last_name %></strong></div>
           <div>Profession: <%= @candidate.profession %></div>
