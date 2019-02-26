@@ -57,12 +57,7 @@ class CandidatesController < ApplicationController
     if @candidate.save
       @candidate.deputy.update(deputy_params)
       if @candidate.deputy.save
-        @candidate.user.update(user_params)
-        if @candidate.user.save
           redirect_to candidate_path(@candidate)    
-        else
-          render :new
-        end 
       else
         render :new
       end
@@ -116,7 +111,7 @@ class CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :email, :district_id, :profession, :picture, :department, :status, :attachment, :doc_type ,documents: [], kits: [], query: [])
+    params.require(:candidate).permit(:first_name, :last_name, :email, :district_id, :profession, :address, :mandate, :picture, :department, :status, :attachment, :doc_type ,documents: [], kits: [], query: [])
   end
 
   def deputy_params
