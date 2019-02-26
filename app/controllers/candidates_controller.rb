@@ -10,7 +10,7 @@ class CandidatesController < ApplicationController
     else
       @candidates = policy_scope(Candidate) if params[:query].blank?
       @candidates = Candidate.global_search(params[:query]).where(district: District.where(department: current_user.department)) unless params[:query].blank?
-      @candidates = @candidates.where(department: Department.find_by(name_code: params[:department])) unless params[:department].blank?
+      @candidates = @candidates.where(district: District.where(department: Department.find_by(name_code:params[:department]))) unless params[:department].blank?
       @candidates = @candidates.where(status: Status.find(params[:status])) unless params[:status].blank?
       respond_to do |format|
         format.js { render partial: 'search-results' }

@@ -5,10 +5,22 @@
     margin-left: -15px;
 }
 
+.header-candidate {
+	display: flex;
+}
+
+.banner-candidate {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+}
+
 .cand-wrapper {
 	display: flex;
     flex-direction: column;
-    margin: 20px auto;
     padding: 2vh 6vh;
     background: white;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
@@ -20,15 +32,17 @@
 }
 
 .candidate-status {
+	text-align: center;
     margin: auto;
     margin-bottom: 2vh;
     padding: 1vh;
     border-radius: 0px 12px 0px 12px;
     box-shadow: 3px 2px 1px rgba(0, 0, 0, 0.25);
     color: white;
-    font-size: 19px;
+    font-size: 3vh;
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    width: 40%;
 }
 
 .candidate-photo {
@@ -56,15 +70,22 @@
 
 }
 
+.candidate-img {
+	margin: 4vh auto 3vh auto;
+    border-radius: 50% !important;
+}
+
 @media (max-width: 544px) {
 	
 	.candidate-status {
-		font-size: 16px;
+    	font-size: 23px;
+    	width: 70%;
+    	padding: 1vh;
 	}
 
 	.candidate-img {
-		margin: auto;
-		width: 70%;
+    	margin: 4vh auto 4vh auto;
+    	width: 59%;
 	}
 	.button {
 	display: flex;
@@ -91,12 +112,12 @@
 	   border: solid;
 	   padding: 1vh;
 	   font-size: 2vh;
+    	margin: 10vh 1vh
 	}
 }
 
 @media (min-width: 545px) {
 	.candidate-img {
-		margin: auto;
 		width: 50%;
 	}
 
@@ -134,8 +155,7 @@
 
 @media (min-width: 992px) {
 	.candidate-img {
-		margin: auto;
-		width: 35%;
+    	width: 35%;
 	}
 }
 
