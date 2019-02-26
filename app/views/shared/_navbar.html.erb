@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to candidates_path, class: "navbar-wagon-brand" do %>
-    <%#= image_tag "https://storage.googleapis.com/photos-illustration/logo-mob.png", height: 50 %>
+    <%= image_tag "https://storage.googleapis.com/photos-illustration/logo-mob.png", height: 50 %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -24,7 +24,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
 
@@ -32,10 +32,10 @@
   <div class="navbar-wagon-item hidden-md hidden-lg">
       <% if user_signed_in? %>
         <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Déconnexion") %>
         <% end %>
       <% else %>
-        <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% end %>
     </div>
   </div>
