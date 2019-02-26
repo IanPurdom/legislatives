@@ -14,34 +14,6 @@
 
 
 
-@media (max-width: 443px) {
-    .candidate-col {
-        flex: 0 0 290px;
-        padding: 0 5px;
-    }
-
-}
-
-@media (min-width: 444px) {
-    .candidate-col {
-        flex: 0 0 220px;
-        padding: 0 5px;
-    }
-
-}
-
-@media (max-width: 659px) {
-    .form-tag {
-        display: flex;
-        flex-direction: column;
-    }
-    .candidate-wrapper {
-        align-content: flex-start;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-}
 
 #pg-search {
         flex: 1 1 auto;
@@ -79,9 +51,9 @@ font-style:italic;
 
 
 .candidate-wrapper {
-	align-content: flex-start;
-	display: flex;
-	flex-wrap: wrap;
+    align-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
     margin:1vh;
 }
 .candidate-card {
@@ -145,7 +117,7 @@ font-style:italic;
 }
 
 .candidate-card-link {
-	position: absolute;
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
@@ -153,7 +125,7 @@ font-style:italic;
 }
 
 .candidate-macaron {
-	border-radius: 0px 12px 0px 9px;
+    border-radius: 0px 12px 0px 9px;
     position: absolute;
     right: 1vh;
     top: 1.05vh;
@@ -161,7 +133,6 @@ font-style:italic;
     font-weight: 500;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     color: white;
-    font-size: 1.7vh
 }
 
 .ui-autocomplete {
@@ -176,3 +147,35 @@ font-style:italic;
 }
 
 
+@media (max-width: 443px) {
+    .candidate-col {
+        flex: 0 0 290px;
+        padding: 0 5px;
+    }
+
+    .candidate-macaron {
+        font-size: 3vh
+    }
+
+}
+
+@media (min-width: 444px) {
+    .candidate-col {
+        flex: 0 0 220px;
+        padding: 0 5px;
+    }
+
+}
+
+@media (max-width: 659px) {
+    .form-tag {
+        display: flex;
+        flex-direction: column;
+    }
+    .candidate-wrapper {
+        align-content: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
