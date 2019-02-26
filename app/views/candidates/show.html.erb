@@ -23,12 +23,15 @@
       <div class='cand-wrapper'>
         <div class="text-cand" >
           <div class="candidate"><strong><%= @candidate.user.first_name %> <%= @candidate.user.last_name %></strong></div>
-          <div>Profession: <%= @candidate.profession %></div>
-          <div>Courriel: <%= @candidate.user.email %></div>
-          <div>Mandat: <%= @candidate.mandate %></div>
+          <div> <strong> Profession: </strong><%= @candidate.profession %></div>
+          <div><strong> Courriel: </strong><%= @candidate.user.email %></div>
+          <div><strong>Mandat: </strong><%= @candidate.mandate %></div>
+          <div><strong>Adresse: </strong><%= @candidate.address %></div>
           <% unless @candidate.deputy.nil? %>
           <div class='deputy'>Suppléant: <strong><%= @candidate.deputy.first_name %> <%= @candidate.deputy.last_name %></strong></div>
-            <div>profession: <%= @candidate.deputy.profession %></div>
+            <div><strong>Profession: </strong><%= @candidate.deputy.profession %></div>
+            <div><strong>Courriel: </strong><%= @candidate.deputy.email %></div>
+            <div><strong>Adresse: </strong><%= @candidate.deputy.address %></div>
           <% end %>
         </div>
         <div class="files">

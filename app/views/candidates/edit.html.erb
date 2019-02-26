@@ -9,6 +9,8 @@
           :label => 'Circonscription',
           collection: @districts.collect {|d| [d.num_district, d.id]}.sort %>
       <%= f.input :profession %>
+      <%= f.input :address, :label => 'Adresse' %>
+      <%= f.input :mandate, :label => 'Mandat' %>
       <div>Photo: </div> 
       <%= f.file_field :picture %>
       <br>
