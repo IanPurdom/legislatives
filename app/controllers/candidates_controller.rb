@@ -63,11 +63,18 @@ class CandidatesController < ApplicationController
     @candidate.update(candidate_params)
     @candidate.picture.attach(candidate_params[:picture]) unless candidate_params[:picture].nil?
     if @candidate.save
-      @candidate.deputy.update(deputy_params)
-      if @candidate.deputy.save
-          redirect_to candidate_path(@candidate)    
+      unless @candidate.deputy.nil?
+        @candidate.deputy.update(deputy_params)
+        if @candidate.deputy.save
+            redirect_to candidate_path(@candidate)    
+        else
+          render :new
+        end
       else
-        render :new
+        deputy = Deputy.new(deputy_params)
+        deputy.candidate = @candidate
+        deputy.save
+        redirect_to candidate_path(@candidate) 
       end
     else 
       render :new
