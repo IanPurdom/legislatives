@@ -53,7 +53,9 @@ class CandidatesController < ApplicationController
   end
 
   def edit
-    @districts = District.where(department: current_user.department)
+    #watch out! We don't take current_user here as the user who edit the candidate can be a different person ex: COM modify candidate user
+    @department = @candidate.district.department
+    @districts = District.where(department: @department)
   end
 
   def update

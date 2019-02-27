@@ -2,7 +2,7 @@
 <br>
 <div class="col-sm-offset-4 col-sm-4">
   <div class='form-dept'><strong>Département:</strong></div> 
-  <div class='form-dept input-dept form-control'><%= current_user.department.name_code %></div> 
+  <div class='form-dept input-dept form-control'><%= @department.name_code %></div> 
   <div class="form-inputs">
     <%= simple_form_for @candidate do |f| %>
       <%= f.input :district_id,
